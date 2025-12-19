@@ -1,0 +1,253 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metaventions AI | Sovereign Architectures</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              midnight: '#0B1020',
+              obsidian: '#05070D',
+              amethyst: '#7B2CFF',
+              cyan: '#18E6FF',
+              magenta: '#FF3DF2',
+              gold: '#D7B26D'
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Neutrals */
+            --fog-white: #F5F7FA;
+            --pearl-mist: #E6EDF5;
+            --midnight-navy: #0B1020;
+            --obsidian: #05070D;
+            
+            /* Radiance */
+            --cyan: #18E6FF;
+            --cyan-radiance: #18E6FF;
+            --teal: #00FFC6;
+            --holo-blue: #5AA7FF;
+            --amethyst: #7B2CFF;
+            --amethyst-violet: #7B2CFF;
+            --magenta: #FF3DF2;
+            
+            /* Warm Accents */
+            --rose-ember: #FF6B8A;
+            --gold: #D7B26D;
+            --gold-glow: rgba(215, 178, 109, 0.4);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: transparent; 
+            margin: 0;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Sovereign Glass Slabs - Pristine Refraction */
+        .glass-slab {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(11, 16, 32, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02);
+            transition: background 0.5s ease, border 0.5s ease;
+        }
+        .dark .glass-slab {
+            background: rgba(11, 16, 32, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-slab-floating {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+            transition: background 0.5s ease, border 0.5s ease;
+        }
+        .dark .glass-slab-floating {
+            background: rgba(11, 16, 32, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Gold Glass Morphism */
+        .glass-gold {
+            background: rgba(215, 178, 109, 0.15);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(215, 178, 109, 0.3);
+            box-shadow: 0 0 40px rgba(215, 178, 109, 0.1);
+        }
+        .dark .glass-gold {
+            background: rgba(215, 178, 109, 0.05);
+            border: 1px solid rgba(215, 178, 109, 0.2);
+            box-shadow: 0 0 60px rgba(215, 178, 109, 0.05);
+        }
+
+        /* Sovereign Spectrum Gradient - Outline Only */
+        .sovereign-spectrum {
+            background: linear-gradient(to right, var(--magenta), var(--amethyst), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gold-spectrum {
+            background: linear-gradient(to right, #D7B26D, #F9D976, #B38728);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .compute-halo {
+            background: linear-gradient(to right, var(--teal), var(--cyan), var(--holo-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .border-sovereign {
+            border: 1px solid transparent;
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(to right, var(--magenta), var(--amethyst), var(--cyan)) border-box;
+        }
+        .dark .border-sovereign {
+            background: linear-gradient(var(--obsidian), var(--obsidian)) padding-box,
+                        linear-gradient(to right, var(--magenta), var(--amethyst), var(--cyan)) border-box;
+        }
+
+        .grid-bg-light {
+            background-image: 
+                linear-gradient(rgba(11, 16, 32, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(11, 16, 32, 0.02) 1px, transparent 1px);
+            background-size: 80px 80px;
+        }
+        .dark .grid-bg-light {
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+        }
+
+        /* Crystallized Text Styling */
+        .text-crystallized {
+            color: rgba(11, 16, 32, 0.7);
+            text-shadow: 0 0 2px rgba(255, 255, 255, 0.8), 0 0 10px rgba(24, 230, 255, 0.2);
+            backdrop-filter: blur(1px);
+            font-weight: 700;
+        }
+        .dark .text-crystallized {
+            color: rgba(255, 255, 255, 0.7);
+            text-shadow: 0 0 2px rgba(0, 0, 0, 0.8), 0 0 10px rgba(24, 230, 255, 0.2);
+        }
+
+        /* Holographic Pulse Animation */
+        @keyframes holo-pulse {
+            0%, 100% { 
+                text-shadow: 0 0 8px var(--cyan-radiance), 0 0 15px rgba(24, 230, 255, 0.3);
+            }
+            50% { 
+                text-shadow: 0 0 8px var(--amethyst-violet), 0 0 15px rgba(123, 44, 255, 0.3);
+            }
+        }
+        .holo-text-pulse {
+            animation: holo-pulse 4s infinite ease-in-out;
+        }
+
+        /* Right-to-Left Loop Scroll Animation */
+        @keyframes loop-scroll-rtl {
+            from { transform: translateX(100%); }
+            to { transform: translateX(-100%); }
+        }
+        .animate-scroll-rtl {
+            display: inline-block;
+            white-space: nowrap;
+            animation: loop-scroll-rtl 20s linear infinite;
+        }
+
+        /* Click Interaction Animation */
+        .click-feedback {
+            transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .click-feedback:active {
+            transform: scale(0.94);
+        }
+
+        /* Scroll Reveal Animations */
+        .reveal-hidden {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .reveal-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes subtle-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .float {
+            animation: subtle-float 6s infinite ease-in-out;
+        }
+
+        /* UI Ring Animation */
+        @keyframes rotate-ui {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .ui-ring {
+            animation: rotate-ui 20s linear infinite;
+        }
+
+        /* Hover Navigation Link Underline */
+        .nav-link {
+            position: relative;
+            padding-bottom: 6px;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 5px; /* Thicker underline */
+            background: linear-gradient(to right, var(--magenta), var(--amethyst), var(--cyan));
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link-gold::after {
+            background: linear-gradient(to right, #D7B26D, #F9D976, #B38728);
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
+  }
+}
+</script>
+</head>
+<body class="light">
+    <div id="root"></div>
+</body>
+</html>
