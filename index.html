@@ -153,7 +153,7 @@
             text-shadow: 0 0 2px rgba(0, 0, 0, 0.8), 0 0 10px rgba(24, 230, 255, 0.2);
         }
 
-        /* Holographic Pulse Animation */
+        /* Holographic Pulse Animation using requested colors */
         @keyframes holo-pulse {
             0%, 100% { 
                 text-shadow: 0 0 8px var(--cyan-radiance), 0 0 15px rgba(24, 230, 255, 0.3);
@@ -177,12 +177,12 @@
             animation: loop-scroll-rtl 20s linear infinite;
         }
 
-        /* Click Interaction Animation */
+        /* Subtle Click Interaction Animation */
         .click-feedback {
             transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .click-feedback:active {
-            transform: scale(0.94);
+            transform: scale(0.96);
         }
 
         /* Scroll Reveal Animations */
@@ -214,10 +214,10 @@
             animation: rotate-ui 20s linear infinite;
         }
 
-        /* Hover Navigation Link Underline */
+        /* Hover Navigation Link Underline - 5px thick with sovereign spectrum */
         .nav-link {
             position: relative;
-            padding-bottom: 6px;
+            padding-bottom: 8px;
         }
         .nav-link::after {
             content: '';
@@ -225,7 +225,7 @@
             bottom: 0;
             left: 0;
             width: 0;
-            height: 5px; /* Thicker underline */
+            height: 5px; 
             background: linear-gradient(to right, var(--magenta), var(--amethyst), var(--cyan));
             transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }

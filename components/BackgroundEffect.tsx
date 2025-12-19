@@ -46,13 +46,13 @@ const BackgroundEffect: React.FC<BackgroundEffectProps> = ({ customBg, bgOpacity
           ></div>
         </>
       ) : (
-        /* Ultra-High-Quality Background Image Layer with 20% Parallax effect */
+        /* Ultra-High-Quality Background Image Layer with 20% Parallax effect to create sense of depth */
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-700 image-render-high"
           style={{ 
             backgroundImage: `url(${customBg})`,
             opacity: bgOpacity,
-            transform: `translateY(${parallaxTranslateY}px) scale(1.1)`, // Scale to accommodate parallax movement
+            transform: `translateY(${parallaxTranslateY}px) scale(1.15)`, // Scale up slightly to prevent edges showing during movement
             height: '140vh',
             width: '100%',
             imageRendering: 'auto',

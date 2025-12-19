@@ -29,7 +29,7 @@ const SignUpModal: React.FC<SignUpModalProps> = ({ isOpen, onClose }) => {
         
         <button 
           onClick={onClose}
-          className="absolute top-4 right-6 mono text-white/60 hover:text-white text-2xl transition-colors focus:outline-none"
+          className="absolute top-4 right-6 mono text-white/60 hover:text-white text-2xl transition-colors focus:outline-none click-feedback"
           aria-label="Close modal"
         >
           ×
@@ -48,7 +48,7 @@ const SignUpModal: React.FC<SignUpModalProps> = ({ isOpen, onClose }) => {
             </p>
             <button 
               onClick={onClose}
-              className="mt-12 px-8 py-4 bg-white text-black mono text-[10px] font-black tracking-widest uppercase hover:bg-[#18E6FF] transition-colors rounded-sm shadow-xl"
+              className="mt-12 px-8 py-4 bg-white text-black mono text-[10px] font-black tracking-widest uppercase hover:bg-[#18E6FF] transition-colors rounded-sm shadow-xl click-feedback"
             >
               Terminate_Interface
             </button>
@@ -98,7 +98,7 @@ const SignUpModal: React.FC<SignUpModalProps> = ({ isOpen, onClose }) => {
                 <button 
                   type="submit" 
                   disabled={status === 'sending'}
-                  className="group relative w-full py-5 bg-white text-black rounded-sm mono text-[11px] font-black tracking-[0.6em] uppercase hover:bg-[#18E6FF] hover:text-white transition-all flex items-center justify-center shadow-2xl overflow-hidden"
+                  className="group relative w-full py-5 bg-white text-black rounded-sm mono text-[11px] font-black tracking-[0.6em] uppercase hover:bg-[#18E6FF] hover:text-white transition-all flex items-center justify-center shadow-2xl overflow-hidden click-feedback"
                 >
                   <span className="relative z-10">
                     {status === 'sending' ? (
