@@ -15,43 +15,74 @@ const BackgroundEffect: React.FC<BackgroundEffectProps> = ({
   const parallaxRef = useRef<HTMLDivElement>(null);
   const glowRef1 = useRef<HTMLDivElement>(null);
   const glowRef2 = useRef<HTMLDivElement>(null);
+  const mousePos = useRef({ x: 0, y: 0 });
+  const currentMousePos = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
     let ticking = false;
-    let lastScrollY = window.scrollY;
 
-    const updateParallax = () => {
+    const handleMouseMove = (e: MouseEvent) => {
+      // Normalize mouse position from -1 to 1
+      mousePos.current = {
+        x: (e.clientX / window.innerWidth) * 2 - 1,
+        y: (e.clientY / window.innerHeight) * 2 - 1
+      };
+    };
+
+    const updateEffects = () => {
       const scrollY = window.scrollY;
       
-      // Update custom background parallax
+      // Smoothly interpolate current mouse position for fluid movement
+      currentMousePos.current.x += (mousePos.current.x - currentMousePos.current.x) * 0.05;
+      currentMousePos.current.y += (mousePos.current.y - currentMousePos.current.y) * 0.05;
+
+      const mx = currentMousePos.current.x;
+      const my = currentMousePos.current.y;
+
+      // Update custom background parallax (scroll only)
       if (parallaxRef.current) {
-        const translateValue = scrollY * 0.15; // 15% parallax for subtle depth
+        const translateValue = scrollY * 0.15;
         parallaxRef.current.style.transform = `translate3d(0, ${translateValue}px, 0) scale(1.15)`;
       }
 
-      // Update ethereal glows parallax (different speeds for multi-layered depth)
+      // Update ethereal glows with combined scroll and mouse interactivity
+      // Glow 1 follows mouse slightly
       if (glowRef1.current) {
-        glowRef1.current.style.transform = `translate3d(0, ${scrollY * 0.1}px, 0)`;
+        const scrollOffset = scrollY * 0.1;
+        const mouseOffsetX = mx * 30; // 30px max horizontal sway
+        const mouseOffsetY = my * 30; // 30px max vertical sway
+        glowRef1.current.style.transform = `translate3d(${mouseOffsetX}px, ${scrollOffset + mouseOffsetY}px, 0)`;
       }
+
+      // Glow 2 moves opposite to mouse for parallax depth
       if (glowRef2.current) {
-        glowRef2.current.style.transform = `translate3d(0, ${-scrollY * 0.05}px, 0)`;
+        const scrollOffset = -scrollY * 0.05;
+        const mouseOffsetX = mx * -50; // Moves further in opposite direction
+        const mouseOffsetY = my * -50;
+        glowRef2.current.style.transform = `translate3d(${mouseOffsetX}px, ${scrollOffset + mouseOffsetY}px, 0)`;
       }
 
       ticking = false;
+      window.requestAnimationFrame(updateEffects);
     };
 
     const onScroll = () => {
       if (!ticking) {
-        window.requestAnimationFrame(updateParallax);
         ticking = true;
       }
     };
 
+    window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('scroll', onScroll, { passive: true });
-    // Initial update
-    updateParallax();
+    
+    // Start animation loop
+    const animationId = window.requestAnimationFrame(updateEffects);
 
-    return () => window.removeEventListener('scroll', onScroll);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('scroll', onScroll);
+      window.cancelAnimationFrame(animationId);
+    };
   }, [customBg]);
 
   return (
@@ -64,12 +95,12 @@ const BackgroundEffect: React.FC<BackgroundEffectProps> = ({
         <>
           <div 
             ref={glowRef1}
-            className={`absolute top-[-20%] left-[-10%] w-[80%] h-[80%] blur-[120px] rounded-full animate-pulse transition-colors duration-700 will-change-transform ${isDarkMode ? 'bg-amethyst/10' : 'bg-[#7B2CFF]/5'}`} 
+            className={`absolute top-[-20%] left-[-10%] w-[80%] h-[80%] blur-[120px] rounded-full animate-pulse transition-colors duration-700 will-change-transform ${isDarkMode ? 'bg-amethyst/15' : 'bg-[#7B2CFF]/10'}`} 
             style={{ animationDuration: '8s' }}
           ></div>
           <div 
             ref={glowRef2}
-            className={`absolute bottom-[-20%] right-[-10%] w-[70%] h-[70%] blur-[100px] rounded-full animate-pulse transition-colors duration-700 will-change-transform ${isDarkMode ? 'bg-cyan/10' : 'bg-[#18E6FF]/5'}`} 
+            className={`absolute bottom-[-20%] right-[-10%] w-[70%] h-[70%] blur-[100px] rounded-full animate-pulse transition-colors duration-700 will-change-transform ${isDarkMode ? 'bg-cyan/15' : 'bg-[#18E6FF]/10'}`} 
             style={{ animationDuration: '12s' }}
           ></div>
         </>
@@ -84,7 +115,6 @@ const BackgroundEffect: React.FC<BackgroundEffectProps> = ({
             height: '130vh',
             width: '100%',
             imageRendering: 'auto',
-            // Hardware acceleration hints
             WebkitBackfaceVisibility: 'hidden',
             backfaceVisibility: 'hidden',
             perspective: '1000px'
@@ -95,15 +125,18 @@ const BackgroundEffect: React.FC<BackgroundEffectProps> = ({
       {/* High-Fidelity Atmospheric Noise/Particles */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 contrast-150 brightness-100"></div>
-        {[...Array(25)].map((_, i) => (
+        {[...Array(30)].map((_, i) => (
           <div 
             key={i}
-            className={`absolute rounded-full opacity-10 transition-colors duration-700 ${isDarkMode ? 'bg-white' : 'bg-black'}`}
+            className={`absolute rounded-full opacity-20 transition-colors duration-700 ${isDarkMode ? 'bg-white' : 'bg-black'}`}
             style={{
-              width: (Math.random() * 1.5 + 0.5) + 'px',
-              height: (Math.random() * 1.5 + 0.5) + 'px',
+              width: (Math.random() * 2 + 0.5) + 'px',
+              height: (Math.random() * 2 + 0.5) + 'px',
               top: (Math.random() * 100) + '%',
               left: (Math.random() * 100) + '%',
+              // Add a slight shimmer animation to particles
+              animation: `pulse ${Math.random() * 3 + 2}s infinite ease-in-out`,
+              animationDelay: `${Math.random() * 5}s`
             }}
           />
         ))}

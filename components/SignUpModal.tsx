@@ -13,7 +13,7 @@ const SignUpModal: React.FC<SignUpModalProps> = ({ isOpen, onClose }) => {
   useEffect(() => {
     if (isOpen) {
       setSyncing(true);
-      const timer = setTimeout(() => setSyncing(false), 800);
+      const timer = setTimeout(() => setSyncing(false), 180);
       return () => clearTimeout(timer);
     }
   }, [isOpen]);
@@ -23,118 +23,89 @@ const SignUpModal: React.FC<SignUpModalProps> = ({ isOpen, onClose }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('sending');
-    setTimeout(() => setStatus('success'), 1500);
+    setTimeout(() => setStatus('success'), 1000);
   };
 
   return (
     <div 
-      className="fixed inset-0 z-[101] flex items-center justify-center p-6 bg-black/60 backdrop-blur-xl transition-all duration-500"
+      className="fixed inset-0 z-[101] flex items-center justify-center p-6 bg-black/70 backdrop-blur-xl transition-opacity duration-200"
       role="dialog"
       aria-modal="true"
-      aria-labelledby="signup-title"
     >
-      <div className="glass-noir-bright w-full max-w-md rounded-sm border border-white/20 p-10 relative overflow-hidden shadow-[0_0_120px_rgba(123,44,255,0.25)] min-h-[500px]">
-        <div className="absolute top-0 left-0 w-full h-[4px] bg-gradient-to-r from-[#FF3DF2] via-[#7B2CFF] to-[#18E6FF]"></div>
+      <div className="w-full max-w-md bg-obsidian rounded-sm border border-white/10 p-10 relative overflow-hidden shadow-2xl min-h-[480px] animate-in zoom-in-95 duration-200 ease-out">
+        <div className="absolute top-0 left-0 w-full h-[4px] bg-gradient-to-r from-[#FF3DF2] via-[#7B2CFF] to-[#18E6FF] z-30"></div>
         
         <button 
           onClick={onClose}
-          className="absolute top-4 right-6 mono text-white/60 hover:text-white text-2xl transition-colors focus:outline-none click-feedback z-20"
-          aria-label="Close modal"
+          className="absolute top-4 right-6 mono text-white/40 hover:text-white text-xl transition-colors click-feedback z-30"
         >
           ×
         </button>
 
-        {syncing ? (
-          <div className="flex flex-col h-full items-center justify-center space-y-10 animate-in fade-in duration-500 py-10">
-             <div className="h-6 w-3/4 skeleton-shimmer rounded-sm"></div>
-             <div className="space-y-6 w-full">
-                <div className="h-12 w-full skeleton-shimmer rounded-sm"></div>
-                <div className="h-12 w-full skeleton-shimmer rounded-sm"></div>
-                <div className="h-12 w-full skeleton-shimmer rounded-sm"></div>
-             </div>
-             <div className="h-14 w-full skeleton-shimmer rounded-sm mt-4"></div>
-             <span className="mono text-[8px] text-white/40 tracking-[0.5em] uppercase">VERIFYING_HANDSHAKE_NODE...</span>
+        {/* Sync Layer */}
+        <div className={`absolute inset-0 flex flex-col items-center justify-center p-10 transition-opacity duration-300 z-10 ${syncing ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+          <div className="w-8 h-8 border-2 border-[#18E6FF]/10 border-t-[#18E6FF] rounded-full animate-spin mb-6"></div>
+          <div className="space-y-4 w-full opacity-20">
+             <div className="h-10 w-full skeleton-shimmer rounded-sm"></div>
+             <div className="h-10 w-full skeleton-shimmer rounded-sm"></div>
+             <div className="h-10 w-full skeleton-shimmer rounded-sm"></div>
           </div>
-        ) : status === 'success' ? (
-          <div className="text-center py-10 animate-in zoom-in duration-500">
-            <div className="w-20 h-20 bg-gradient-to-br from-[#18E6FF] via-[#7B2CFF] to-[#FF3DF2] rounded-full mx-auto flex items-center justify-center mb-8 shadow-lg animate-bounce">
-               <svg className="w-10 h-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-               </svg>
+        </div>
+
+        {/* Content Layer */}
+        <div className={`transition-all duration-300 ${syncing ? 'opacity-0 scale-98 blur-sm' : 'opacity-100 scale-100 blur-0'}`}>
+          {status === 'success' ? (
+            <div className="text-center py-10">
+              <div className="w-16 h-16 bg-gradient-to-br from-[#18E6FF] to-[#7B2CFF] rounded-full mx-auto flex items-center justify-center mb-8 shadow-lg">
+                 <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={4} d="M5 13l4 4L19 7" />
+                 </svg>
+              </div>
+              <h2 className="mono text-lg font-black text-white mb-4 tracking-tighter uppercase">Success</h2>
+              <button 
+                onClick={onClose}
+                className="mt-12 px-10 py-3 bg-white text-black mono text-[9px] font-black tracking-widest uppercase hover:bg-[#18E6FF] transition-colors rounded-sm click-feedback"
+              >
+                TERMINATE
+              </button>
             </div>
-            <h2 className="mono text-xl font-black text-white mb-4 tracking-tighter uppercase">Handshake_Success</h2>
-            <p className="mono text-[11px] text-white/80 uppercase tracking-widest leading-relaxed">
-              Transmission received. Your entity profile is now queued for partnership evaluation.
-            </p>
-            <button 
-              onClick={onClose}
-              className="mt-12 px-8 py-4 bg-white text-black mono text-[10px] font-black tracking-widest uppercase hover:bg-[#18E6FF] transition-colors rounded-sm shadow-xl click-feedback"
-            >
-              Terminate_Interface
-            </button>
-          </div>
-        ) : (
-          <div className="animate-in fade-in slide-in-from-bottom-2 duration-500">
-            <div className="mb-10">
-              <h2 id="signup-title" className="mono text-sm font-black tracking-[0.5em] text-white uppercase mb-2">Initialize_Handshake</h2>
-              <p className="mono text-[10px] text-[#18E6FF] tracking-widest uppercase font-bold">Protocol: Sovereign_Partnership_Beta</p>
-            </div>
-            
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block mono text-[9px] uppercase font-black text-white/80 mb-2 tracking-[0.4em]">Operator_Name</label>
-                <input 
-                  id="name"
-                  required
-                  type="text" 
-                  placeholder="IDENTIFY_YOURSELF"
-                  className="w-full bg-white/10 border border-white/20 rounded-sm px-6 py-4 focus:outline-none focus:border-[#18E6FF] transition-all text-white mono text-[10px] uppercase placeholder:text-white/20 focus:bg-white/15"
-                />
+          ) : (
+            <div>
+              <div className="mb-10">
+                <h2 className="mono text-xs font-black tracking-[0.5em] text-white uppercase mb-2">Initialize_Sync</h2>
+                <p className="mono text-[8px] text-[#18E6FF] tracking-widest uppercase font-bold opacity-60">Handshake Required</p>
               </div>
               
-              <div>
-                <label htmlFor="email" className="block mono text-[9px] uppercase font-black text-white/80 mb-2 tracking-[0.4em]">Neural_Route</label>
+              <form onSubmit={handleSubmit} className="space-y-5">
                 <input 
-                  id="email"
-                  required
-                  type="email" 
-                  placeholder="EMAIL_CORE_LINK"
-                  className="w-full bg-white/10 border border-white/20 rounded-sm px-6 py-4 focus:outline-none focus:border-[#7B2CFF] transition-all text-white mono text-[10px] uppercase placeholder:text-white/20 focus:bg-white/15"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="business" className="block mono text-[9px] uppercase font-black text-white/80 mb-2 tracking-[0.4em]">Business_Architecture</label>
-                <input 
-                  id="business"
                   required
                   type="text" 
-                  placeholder="PARTNERSHIP_ENTITY_NAME"
-                  className="w-full bg-white/10 border border-white/20 rounded-sm px-6 py-4 focus:outline-none focus:border-[#FF3DF2] transition-all text-white mono text-[10px] uppercase placeholder:text-white/20 focus:bg-white/15"
+                  placeholder="IDENTIFIER"
+                  className="w-full bg-white/5 border border-white/10 rounded-sm px-5 py-3.5 focus:outline-none focus:border-[#18E6FF] transition-all text-white mono text-[9px] uppercase placeholder:text-white/20"
                 />
-              </div>
-
-              <div className="pt-4">
+                <input 
+                  required
+                  type="email" 
+                  placeholder="NEURAL_ROUTE"
+                  className="w-full bg-white/5 border border-white/10 rounded-sm px-5 py-3.5 focus:outline-none focus:border-[#7B2CFF] transition-all text-white mono text-[9px] uppercase placeholder:text-white/20"
+                />
+                <input 
+                  required
+                  type="text" 
+                  placeholder="ENTITY"
+                  className="w-full bg-white/5 border border-white/10 rounded-sm px-5 py-3.5 focus:outline-none focus:border-[#FF3DF2] transition-all text-white mono text-[9px] uppercase placeholder:text-white/20"
+                />
                 <button 
                   type="submit" 
                   disabled={status === 'sending'}
-                  className="group relative w-full py-5 bg-white text-black rounded-sm mono text-[11px] font-black tracking-[0.6em] uppercase hover:bg-[#18E6FF] hover:text-white transition-all flex items-center justify-center shadow-2xl overflow-hidden click-feedback"
+                  className="w-full py-4 bg-white text-black rounded-sm mono text-[9px] font-black tracking-[0.6em] uppercase hover:bg-[#18E6FF] transition-all flex items-center justify-center shadow-2xl click-feedback mt-4"
                 >
-                  <span className="relative z-10">
-                    {status === 'sending' ? (
-                      <div className="w-5 h-5 border-2 border-black/20 border-t-black rounded-full animate-spin"></div>
-                    ) : 'INITIALIZE_SYNC'}
-                  </span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#FF3DF2] via-[#7B2CFF] to-[#18E6FF] translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
+                  {status === 'sending' ? 'TRANSMITTING...' : 'INITIALIZE'}
                 </button>
-              </div>
-            </form>
-
-            <div className="mt-8 pt-6 border-t border-white/10 text-center">
-               <span className="mono text-[8px] text-white/40 tracking-[0.4em] uppercase font-black">Sovereign_Protocol_01 // (C) 2025 Metaventions</span>
+              </form>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );
