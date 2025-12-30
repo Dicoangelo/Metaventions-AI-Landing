@@ -5,7 +5,8 @@ const Footer: React.FC = () => {
   const socials = [
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/dico-angelo/' },
     { label: 'GitHub', href: 'https://github.com/Blackamethyst-ai' },
-    { label: 'X', href: 'https://x.com/dicoangelo' }
+    { label: 'X', href: 'https://x.com/dicoangelo' },
+    { label: 'Substack', href: 'https://substack.com/@thedicoangelo' }
   ];
 
   return (
@@ -21,7 +22,7 @@ const Footer: React.FC = () => {
           <p className="text-black dark:text-white/50 mono text-[9px] tracking-[0.3em] uppercase font-bold transition-colors duration-500">&copy; 2025 Metaventions AI // MANHATTAN, NY // Orbital_Core_01</p>
         </div>
 
-        <div className="flex gap-16">
+        <div className="flex flex-wrap justify-center gap-8 md:gap-16">
           {socials.map((social) => (
             <a 
               key={social.label} 

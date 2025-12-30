@@ -71,10 +71,10 @@ const InvestorsModal: React.FC<InvestorsModalProps> = ({ isOpen, onClose, isDark
           <div className="bg-black/40 dark:bg-white/5 border-2 border-gold/30 p-12 text-center rounded-sm backdrop-blur-2xl shadow-2xl">
             <h3 className="mono text-[10px] font-black tracking-[0.5em] text-gold uppercase mb-6">DIRECT_INQUIRY</h3>
             <p className="text-3xl font-black text-white dark:text-white mb-10 tracking-tighter">
-              Dicoangelo@metaventions.com
+              Dicoangelo@metaventionsai.com
             </p>
             <a 
-              href="mailto:Dicoangelo@metaventions.com"
+              href="mailto:Dicoangelo@metaventionsai.com"
               className="px-14 py-5 bg-gold text-black font-black rounded-sm transition-all hover:scale-105 hover:shadow-[0_0_30px_rgba(215,178,109,0.5)] shadow-xl mono text-[11px] tracking-[0.6em] inline-block uppercase click-feedback"
             >
               INITIALIZE_PARTNERSHIP
