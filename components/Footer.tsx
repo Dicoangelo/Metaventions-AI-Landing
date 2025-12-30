@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="py-24 px-10 mt-40 border-t border-black/10 dark:border-white/10 bg-white/40 dark:bg-obsidian/40 backdrop-blur-3xl relative overflow-hidden transition-colors duration-500">
+    <footer className="py-24 px-10 mt-40 glass-liquid-subtle relative overflow-hidden transition-colors duration-500">
       <div className="absolute top-0 left-0 w-full h-[0.5px] bg-gradient-to-r from-transparent via-black dark:via-white to-transparent opacity-10"></div>
       
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-16 relative z-10">

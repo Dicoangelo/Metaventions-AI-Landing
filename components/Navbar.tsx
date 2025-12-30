@@ -30,7 +30,8 @@ const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-      <div className="absolute inset-0 bg-white/90 dark:bg-obsidian/90 backdrop-blur-xl border-b border-black/5 dark:border-white/5 pointer-events-none transition-colors duration-500"></div>
+      {/* Liquid Glass Layer */}
+      <div className="absolute inset-0 glass-liquid-subtle pointer-events-none transition-all duration-500"></div>
       
       <div className="w-[98%] mx-auto flex items-center justify-between px-2 py-5 relative z-10">
         <div className="flex items-center gap-12 overflow-hidden">
@@ -63,8 +64,8 @@ const Navbar: React.FC<NavbarProps> = ({
                 onClick={link.action}
                 className={`nav-link ${
                   link.isGold 
-                    ? 'nav-link-gold text-gold font-bold' 
-                    : 'text-[#0B1020] font-bold'
+                    ? 'nav-link-gold text-gold font-black' 
+                    : 'text-[#0B1020] dark:text-white font-black'
                 } mono text-[10px] uppercase tracking-[0.3em] transition-colors duration-500 click-feedback`}
               >
                 {link.label}
