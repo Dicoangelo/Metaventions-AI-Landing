@@ -27,15 +27,9 @@ const App: React.FC = () => {
   const [isProductOpen, setIsProductOpen] = useState(false);
   const [isInvestorsOpen, setIsInvestorsOpen] = useState(false);
 
-  // Genesis Sequence state - show on first visit
-  const [showGenesis, setShowGenesis] = useState(() => {
-    // Check if user has seen the intro before
-    const hasSeenIntro = localStorage.getItem('metaventions_seen_genesis');
-    // Also check URL param to force show: ?genesis=true
-    const urlParams = new URLSearchParams(window.location.search);
-    const forceShow = urlParams.get('genesis') === 'true';
-    return forceShow || !hasSeenIntro;
-  });
+  // Genesis Sequence state - DISABLED pending professional implementation
+  // Concept documented at: ~/.agent-core/brand/GENESIS-SEQUENCE.md
+  const [showGenesis, setShowGenesis] = useState(false);
 
   const handleGenesisComplete = () => {
     setShowGenesis(false);

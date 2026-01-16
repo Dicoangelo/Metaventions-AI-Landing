@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import { submitSignup } from '../lib/supabase';
 
 interface SignUpModalProps {
   isOpen: boolean;
@@ -9,10 +10,18 @@ interface SignUpModalProps {
 const SignUpModal: React.FC<SignUpModalProps> = ({ isOpen, onClose }) => {
   const [status, setStatus] = useState<'idle' | 'sending' | 'success'>('idle');
   const [syncing, setSyncing] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Form fields
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [organization, setOrganization] = useState('');
 
   useEffect(() => {
     if (isOpen) {
       setSyncing(true);
+      setStatus('idle');
+      setError(null);
       const timer = setTimeout(() => setSyncing(false), 180);
       return () => clearTimeout(timer);
     }
@@ -20,10 +29,23 @@ const SignUpModal: React.FC<SignUpModalProps> = ({ isOpen, onClose }) => {
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('sending');
-    setTimeout(() => setStatus('success'), 1000);
+    setError(null);
+
+    const result = await submitSignup({ name, email, organization });
+
+    if (result.success) {
+      setStatus('success');
+      // Reset form
+      setName('');
+      setEmail('');
+      setOrganization('');
+    } else {
+      setStatus('idle');
+      setError(result.error || 'Submission failed');
+    }
   };
 
   return (
@@ -77,30 +99,41 @@ const SignUpModal: React.FC<SignUpModalProps> = ({ isOpen, onClose }) => {
               </div>
               
               <form onSubmit={handleSubmit} className="space-y-5">
+                {error && (
+                  <div className="p-3 bg-red-500/10 border border-red-500/30 rounded-sm mb-2">
+                    <p className="mono text-[9px] text-red-400 uppercase">{error}</p>
+                  </div>
+                )}
                 <div className="space-y-1">
                   <label className="mono text-[8px] uppercase opacity-40 font-black tracking-[0.2em] ml-1">IDENTITY</label>
-                  <input 
+                  <input
                     required
-                    type="text" 
+                    type="text"
                     placeholder="FULL NAME"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                     className="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-sm px-5 py-3.5 focus:outline-none focus:border-[#18E6FF] transition-all text-black dark:text-white mono text-[9px] uppercase placeholder:text-black/40 dark:placeholder:text-white/20"
                   />
                 </div>
                 <div className="space-y-1">
                   <label className="mono text-[8px] uppercase opacity-40 font-black tracking-[0.2em] ml-1">CONTACT_CHANNEL</label>
-                  <input 
+                  <input
                     required
-                    type="email" 
+                    type="email"
                     placeholder="EMAIL ADDRESS"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     className="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-sm px-5 py-3.5 focus:outline-none focus:border-[#7B2CFF] transition-all text-black dark:text-white mono text-[9px] uppercase placeholder:text-black/40 dark:placeholder:text-white/20"
                   />
                 </div>
                 <div className="space-y-1">
                   <label className="mono text-[8px] uppercase opacity-40 font-black tracking-[0.2em] ml-1">ORGANIZATION</label>
-                  <input 
+                  <input
                     required
-                    type="text" 
+                    type="text"
                     placeholder="ENTITY / COMPANY"
+                    value={organization}
+                    onChange={(e) => setOrganization(e.target.value)}
                     className="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-sm px-5 py-3.5 focus:outline-none focus:border-[#FF3DF2] transition-all text-black dark:text-white mono text-[9px] uppercase placeholder:text-black/40 dark:placeholder:text-white/20"
                   />
                 </div>

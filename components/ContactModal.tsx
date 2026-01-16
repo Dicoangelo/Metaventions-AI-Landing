@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import { submitContact } from '../lib/supabase';
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -10,10 +11,19 @@ interface ContactModalProps {
 const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose, isDarkMode }) => {
   const [status, setStatus] = useState<'idle' | 'sending' | 'success'>('idle');
   const [syncing, setSyncing] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Form fields
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [objective, setObjective] = useState('STRUCTURA_BETA_ACCESS');
+  const [message, setMessage] = useState('');
 
   useEffect(() => {
     if (isOpen) {
       setSyncing(true);
+      setStatus('idle');
+      setError(null);
       const timer = setTimeout(() => setSyncing(false), 180);
       return () => clearTimeout(timer);
     }
@@ -21,10 +31,24 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose, isDarkMode
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('sending');
-    setTimeout(() => setStatus('success'), 1000);
+    setError(null);
+
+    const result = await submitContact({ name, email, objective, message });
+
+    if (result.success) {
+      setStatus('success');
+      // Reset form
+      setName('');
+      setEmail('');
+      setObjective('STRUCTURA_BETA_ACCESS');
+      setMessage('');
+    } else {
+      setStatus('idle');
+      setError(result.error || 'Submission failed');
+    }
   };
 
   return (
@@ -69,22 +93,31 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose, isDarkMode
               </div>
               
               <form onSubmit={handleSubmit} className="space-y-6">
+                {error && (
+                  <div className="p-3 bg-red-500/10 border border-red-500/30 rounded-sm">
+                    <p className="mono text-[9px] text-red-400 uppercase">{error}</p>
+                  </div>
+                )}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="mono text-[8px] uppercase opacity-40 font-black tracking-[0.2em] ml-1">IDENTITY</label>
-                    <input 
+                    <input
                       required
-                      type="text" 
+                      type="text"
                       placeholder="YOUR FULL NAME"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
                       className="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-sm px-6 py-4 focus:outline-none focus:border-[#7B2CFF] transition-all text-black dark:text-white mono text-[9px] uppercase placeholder:text-black/30 dark:placeholder:text-white/30"
                     />
                   </div>
                   <div className="space-y-2">
                     <label className="mono text-[8px] uppercase opacity-40 font-black tracking-[0.2em] ml-1">CONTACT_CHANNEL</label>
-                    <input 
+                    <input
                       required
-                      type="email" 
+                      type="email"
                       placeholder="EMAIL_ADDRESS"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                       className="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-sm px-6 py-4 focus:outline-none focus:border-[#7B2CFF] transition-all text-black dark:text-white mono text-[9px] uppercase placeholder:text-black/30 dark:placeholder:text-white/30"
                     />
                   </div>
@@ -92,27 +125,34 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose, isDarkMode
 
                 <div className="space-y-2">
                   <label className="mono text-[8px] uppercase opacity-40 font-black tracking-[0.2em] ml-1">OBJECTIVE</label>
-                  <select className="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-sm px-6 py-4 focus:outline-none focus:border-[#7B2CFF] transition-all text-black dark:text-white mono text-[9px] uppercase appearance-none cursor-pointer">
-                    <option className="bg-white dark:bg-obsidian">STRUCTURA_BETA_ACCESS</option>
-                    <option className="bg-white dark:bg-obsidian">COLLABORATION_INQUIRY</option>
-                    <option className="bg-white dark:bg-obsidian">INVESTOR_RELATIONS</option>
+                  <select
+                    value={objective}
+                    onChange={(e) => setObjective(e.target.value)}
+                    className="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-sm px-6 py-4 focus:outline-none focus:border-[#7B2CFF] transition-all text-black dark:text-white mono text-[9px] uppercase appearance-none cursor-pointer"
+                  >
+                    <option value="STRUCTURA_BETA_ACCESS" className="bg-white dark:bg-obsidian">STRUCTURA_BETA_ACCESS</option>
+                    <option value="COLLABORATION_INQUIRY" className="bg-white dark:bg-obsidian">COLLABORATION_INQUIRY</option>
+                    <option value="INVESTOR_RELATIONS" className="bg-white dark:bg-obsidian">INVESTOR_RELATIONS</option>
                   </select>
                 </div>
 
                 <div className="space-y-2">
                   <label className="mono text-[8px] uppercase opacity-40 font-black tracking-[0.2em] ml-1">INQUIRY_BRIEF</label>
-                  <textarea 
+                  <textarea
                     rows={4}
                     placeholder="DESCRIBE YOUR INTEREST..."
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
                     className="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-sm px-6 py-4 focus:outline-none focus:border-[#7B2CFF] transition-all text-black dark:text-white mono text-[9px] uppercase resize-none placeholder:text-black/30 dark:placeholder:text-white/30"
                   ></textarea>
                 </div>
 
-                <button 
-                  type="submit" 
-                  className="w-full py-5 bg-black dark:bg-white text-white dark:text-black rounded-sm mono text-[9px] font-black tracking-[0.6em] uppercase hover:bg-amethyst hover:text-white transition-all shadow-xl click-feedback"
+                <button
+                  type="submit"
+                  disabled={status === 'sending'}
+                  className="w-full py-5 bg-black dark:bg-white text-white dark:text-black rounded-sm mono text-[9px] font-black tracking-[0.6em] uppercase hover:bg-amethyst hover:text-white transition-all shadow-xl click-feedback disabled:opacity-50"
                 >
-                  TRANSMIT
+                  {status === 'sending' ? 'TRANSMITTING...' : 'TRANSMIT'}
                 </button>
               </form>
             </div>

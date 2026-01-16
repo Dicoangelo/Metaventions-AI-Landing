@@ -82,10 +82,10 @@ export function VoidParticles({ active, progress }: VoidParticlesProps) {
           />
         </bufferGeometry>
         <pointsMaterial
-          size={0.3}
+          size={0.5}
           color="#18E6FF"
           transparent
-          opacity={0.15 * progress}
+          opacity={0.3 + 0.4 * progress}
           sizeAttenuation
         />
       </points>
@@ -107,15 +107,8 @@ export function VoidParticles({ active, progress }: VoidParticlesProps) {
                   color="#18E6FF"
                   anchorX="center"
                   anchorY="middle"
-                  font="/fonts/mono.woff"
-                  fillOpacity={0}
                 >
                   {word}
-                  <meshBasicMaterial
-                    transparent
-                    opacity={0}
-                    color="#18E6FF"
-                  />
                 </Text>
               </group>
             </Float>
