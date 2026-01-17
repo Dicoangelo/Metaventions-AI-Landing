@@ -79,7 +79,7 @@ A futuristic, responsive landing page showcasing Metaventions AI — a research 
 
 ```bash
 # Clone
-git clone https://github.com/Blackamethyst-ai/Metaventions-AI-Landing.git
+git clone https://github.com/Dicoangelo/Metaventions-AI-Landing.git
 cd Metaventions-AI-Landing
 
 # Install dependencies
@@ -150,16 +150,16 @@ npm run build
 
 | Project | Description |
 |:--------|:------------|
-| [The-Decosystem](https://github.com/Blackamethyst-ai/The-Decosystem) | Architectural blueprint |
-| [agent-core](https://github.com/Blackamethyst-ai/agent-core) | Research orchestration |
-| [ResearchGravity](https://github.com/Blackamethyst-ai/ResearchGravity) | Signal capture framework |
-| [CareerCoachAntigravity](https://github.com/Blackamethyst-ai/CareerCoachAntigravity) | Career intelligence |
+| [The-Decosystem](https://github.com/Dicoangelo/The-Decosystem) | Architectural blueprint |
+| [agent-core](https://github.com/Dicoangelo/agent-core) | Research orchestration |
+| [ResearchGravity](https://github.com/Dicoangelo/ResearchGravity) | Signal capture framework |
+| [CareerCoachAntigravity](https://github.com/Dicoangelo/CareerCoachAntigravity) | Career intelligence |
 
 ---
 
 <div align="center">
 
-**Part of the [Metaventions Ecosystem](https://github.com/Blackamethyst-ai)**
+**Part of the [Metaventions Ecosystem](https://github.com/Dicoangelo)**
 
 <br/>
 

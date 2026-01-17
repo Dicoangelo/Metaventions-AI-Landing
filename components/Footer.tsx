@@ -4,7 +4,7 @@ import React from 'react';
 const Footer: React.FC = () => {
   const socials = [
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/dico-angelo/' },
-    { label: 'GitHub', href: 'https://github.com/Blackamethyst-ai' },
+    { label: 'GitHub', href: 'https://github.com/Dicoangelo' },
     { label: 'X', href: 'https://x.com/dicoangelo' },
     { label: 'Substack', href: 'https://substack.com/@thedicoangelo' }
   ];
