@@ -5,7 +5,7 @@ const ProductSpotlight: React.FC = () => {
   const features = [
     {
       title: "Asset Studio",
-      desc: "Visualize and deploy digital assets in real-time. High-clarity refraction UI for sovereign control.",
+      desc: "Visualize and deploy digital assets in real-time. High-clarity refraction UI for full control.",
       icon: "⚡"
     },
     {
@@ -39,7 +39,7 @@ const ProductSpotlight: React.FC = () => {
                  <span className="font-black text-[#0B1020]">KERNEL_LINK: STABLE</span>
                  <span className="tracking-widest font-bold">ENCRYPTION: AES-512-V1</span>
               </div>
-              <div className="text-[#7B2CFF] font-black tracking-widest uppercase">SOVEREIGN_ENGINE_V1.0.4</div>
+              <div className="text-[#7B2CFF] font-black tracking-widest uppercase">STRUCTURA_ENGINE_V1.0.4</div>
             </div>
             
             <div className="grid grid-cols-5 gap-8 flex-grow">

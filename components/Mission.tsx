@@ -48,10 +48,10 @@ const Mission: React.FC = () => {
           <div className="glass-slab-floating p-12 rounded-sm border-white/20 dark:border-white/10 relative overflow-hidden shadow-sm">
             <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-[#18E6FF] to-[#7B2CFF]"></div>
             <p className="text-2xl text-black dark:text-white leading-relaxed font-light mb-8 tracking-tight transition-colors duration-500">
-              We are moving beyond simple automation. Metaventions AI builds <span className="compute-halo font-black">sovereign operating systems</span> that synthesize distinct data streams into unified human intent.
+              We are moving beyond simple automation. Metaventions AI builds <span className="compute-halo font-black">intelligent operating systems</span> that synthesize distinct data streams into unified human intent.
             </p>
             <p className="text-lg text-black/70 dark:text-white/70 leading-relaxed font-bold transition-colors duration-500">
-              We focus on high-fidelity collaboration between human operators and autonomous agents, ensuring that technology serves as a direct extension of sovereignty.
+              We focus on high-fidelity collaboration between human operators and autonomous agents, ensuring that technology serves as a direct extension of human agency.
             </p>
           </div>
         </div>

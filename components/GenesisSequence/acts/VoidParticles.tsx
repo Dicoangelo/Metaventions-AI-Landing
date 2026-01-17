@@ -11,7 +11,7 @@ interface VoidParticlesProps {
 const WORDS = [
   'signal', 'research', 'pattern', 'data', 'insight', 'noise',
   'fragment', 'hypothesis', 'synthesis', 'discovery', 'vision',
-  'invention', 'architecture', 'sovereign', 'intelligence'
+  'invention', 'architecture', 'agency', 'intelligence'
 ]
 
 export function VoidParticles({ active, progress }: VoidParticlesProps) {

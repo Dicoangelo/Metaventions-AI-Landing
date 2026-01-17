@@ -21,7 +21,7 @@ const ProductModal: React.FC<ProductModalProps> = ({ isOpen, onClose, isDarkMode
   if (!isOpen) return null;
 
   const ecosystem = [
-    { title: "Structura OS", id: "S-01", text: "Modular environment for total sovereignty." },
+    { title: "Structura OS", id: "S-01", text: "Modular environment for total autonomy." },
     { title: "Partner Weaver", id: "P-02", text: "High-fidelity human-agent collaboration." },
     { title: "M-Labs", id: "L-03", text: "Rapid prototyping of neural architectures." }
   ];

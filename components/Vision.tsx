@@ -10,12 +10,12 @@ const Vision: React.FC = () => {
            <div className="flex-grow h-px bg-[#0B1020]/10"></div>
         </div>
         
-        <h1 className="text-7xl md:text-9xl font-black mb-20 tracking-tighter leading-[0.85] text-[#0B1020]">Intelligence, <br /><span className="text-[#0B1020]/40">Sovereign.</span></h1>
+        <h1 className="text-7xl md:text-9xl font-black mb-20 tracking-tighter leading-[0.85] text-[#0B1020]">Intelligence, <br /><span className="text-[#0B1020]/40">Architected.</span></h1>
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-20">
           <div className="lg:col-span-7 space-y-16 text-3xl text-[#0B1020]/90 leading-relaxed font-light tracking-tight">
             <p className="relative">
-               The future of software isn't just a set of buttons; it's a partner in creation. We believe the user should remain the sovereign core, with AI acting as the weaver of their intent.
+               The future of software isn't just a set of buttons; it's a partner in creation. We believe the user should remain the central architect, with AI acting as the weaver of their intent.
             </p>
             <p className="text-xl text-[#0B1020]/70 max-w-2xl font-bold">
               Metaventions AI was founded on the belief that as intelligence becomes architected into every layer of our digital lives, the priority must shift back to human agency.
@@ -30,9 +30,9 @@ const Vision: React.FC = () => {
               </p>
             </div>
             <div className="glass-slab-floating p-12 rounded-sm border-white">
-              <h3 className="text-[#0B1020] font-black text-2xl mb-6 tracking-tighter uppercase mono tracking-widest">Sovereignty</h3>
+              <h3 className="text-[#0B1020] font-black text-2xl mb-6 tracking-tighter uppercase mono tracking-widest">Autonomy</h3>
               <p className="text-[#0B1020]/70 text-lg leading-relaxed font-light">
-                Your data, your logic, your assets. We utilize decentralized protocols and sovereign stacks to ensure that your intelligence remains your own.
+                Your data, your logic, your assets. We utilize decentralized protocols and private stacks to ensure that your intelligence remains your own.
               </p>
             </div>
           </div>

@@ -25,8 +25,8 @@ const Ecosystem: React.FC = () => {
 
   const cards = [
     {
-      title: "Structura Sovereign OS",
-      text: "A modular operating environment designed for total digital sovereignty. Integrate assets, logic, and voice cores into a single, reactive dashboard.",
+      title: "Structura OS",
+      text: "A modular operating environment designed for total digital autonomy. Integrate assets, logic, and voice cores into a single, reactive dashboard.",
       id: "S-01",
       glow: "#18E6FF"
     },

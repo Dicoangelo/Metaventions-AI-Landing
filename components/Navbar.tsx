@@ -75,7 +75,7 @@ const Navbar: React.FC<NavbarProps> = ({
 
           <div className="relative flex-grow h-6 overflow-hidden hidden 2xl:flex items-center ml-4">
             <span className="animate-scroll-rtl text-crystallized mono text-[9px] uppercase tracking-[0.3em]">
-              Architected Intelligence — Sovereign Thinking — Let the invention be hidden in your vision —
+              Architected Intelligence — Deep Thinking — Let the invention be hidden in your vision —
             </span>
           </div>
         </div>
@@ -85,7 +85,7 @@ const Navbar: React.FC<NavbarProps> = ({
           <button 
             onClick={toggleTheme}
             className="w-10 h-10 flex items-center justify-center rounded-sm glass-slab hover:border-amethyst/30 transition-all click-feedback group"
-            aria-label="Toggle Sovereign Noir Lab Theme"
+            aria-label="Toggle Dark Mode"
           >
             {isDarkMode ? (
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-cyan">

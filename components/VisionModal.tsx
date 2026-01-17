@@ -45,16 +45,16 @@ const VisionModal: React.FC<VisionModalProps> = ({ isOpen, onClose, isDarkMode }
         <div className={`transition-all duration-300 ${syncing ? 'opacity-0 scale-98' : 'opacity-100 scale-100'}`}>
           <div className="mb-14 text-center">
             <span className="mono text-[9px] font-black tracking-[0.6em] text-[#7B2CFF] uppercase block mb-4 opacity-60">PHILOSOPHY</span>
-            <h2 className="text-5xl font-black text-black dark:text-white tracking-tighter">Intelligence, Sovereign.</h2>
+            <h2 className="text-5xl font-black text-black dark:text-white tracking-tighter">Intelligence, Architected.</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div className="space-y-8">
               <p className="text-xl text-black dark:text-white font-light leading-relaxed tracking-tight border-l-2 border-[#18E6FF] pl-8">
-                The user remains the sovereign core, with AI acting as the weaver of intent.
+                The user remains the central architect, with AI acting as the weaver of intent.
               </p>
               <p className="text-sm text-black dark:text-white/60 font-medium italic">
-                Architecting sovereign operating systems that synthesize data streams into human intent.
+                Architecting intelligent operating systems that synthesize data streams into human intent.
               </p>
             </div>
 
@@ -66,9 +66,9 @@ const VisionModal: React.FC<VisionModalProps> = ({ isOpen, onClose, isDarkMode }
                 </p>
               </div>
               <div className="p-6 bg-black/10 dark:bg-white/5 rounded-sm border border-black/5 dark:border-white/5">
-                <h3 className="mono text-[9px] font-black tracking-widest text-[#18E6FF] uppercase mb-2">Sovereignty</h3>
+                <h3 className="mono text-[9px] font-black tracking-widest text-[#18E6FF] uppercase mb-2">Autonomy</h3>
                 <p className="text-black/70 dark:text-white/50 text-xs leading-relaxed">
-                  Your data, your logic. We utilize sovereign stacks to protect your intelligence.
+                  Your data, your logic. We utilize private stacks to protect your intelligence.
                 </p>
               </div>
             </div>

@@ -17,7 +17,7 @@
 
 ## Overview
 
-A futuristic, responsive landing page showcasing Metaventions AI — a research and development studio focused on **Architected Intelligence** and sovereign agentic workflows.
+A futuristic, responsive landing page showcasing Metaventions AI — a research and development studio focused on **Architected Intelligence** and agentic workflows.
 
 ### Features
 

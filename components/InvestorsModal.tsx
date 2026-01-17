@@ -47,7 +47,7 @@ const InvestorsModal: React.FC<InvestorsModalProps> = ({ isOpen, onClose, isDark
           <div className="mb-16 text-center">
             <span className="mono text-xs font-black tracking-[1em] text-gold uppercase block mb-6">SYNERGY</span>
             <h2 className="text-6xl font-black text-black dark:text-white tracking-tighter leading-none">
-              Sovereign <span className="gold-spectrum italic">Intelligence.</span>
+              Architected <span className="gold-spectrum italic">Intelligence.</span>
             </h2>
           </div>
 
@@ -62,7 +62,7 @@ const InvestorsModal: React.FC<InvestorsModalProps> = ({ isOpen, onClose, isDark
               <div className="group">
                 <h3 className="mono text-sm font-black tracking-[0.3em] text-gold uppercase mb-4">Moat</h3>
                 <p className="text-black dark:text-white text-lg leading-relaxed font-medium">
-                  Proprietary OS architectures and high-fidelity frameworks designed for sovereign control.
+                  Proprietary OS architectures and high-fidelity frameworks designed for full control.
                 </p>
               </div>
             </div>
