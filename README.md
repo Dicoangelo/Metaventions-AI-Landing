@@ -159,7 +159,7 @@ npm run build
 
 <div align="center">
 
-**Part of the [Antigravity Ecosystem](https://github.com/Blackamethyst-ai)**
+**Part of the [Metaventions Ecosystem](https://github.com/Blackamethyst-ai)**
 
 <br/>
 
