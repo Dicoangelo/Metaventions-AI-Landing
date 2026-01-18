@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 
 interface NavbarProps {
   onOpenSettings: () => void;
@@ -11,15 +11,17 @@ interface NavbarProps {
   toggleTheme: () => void;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ 
-  onOpenSettings, 
-  onOpenVision, 
-  onOpenProduct, 
+const Navbar: React.FC<NavbarProps> = ({
+  onOpenSettings,
+  onOpenVision,
+  onOpenProduct,
   onOpenContact,
   onOpenInvestors,
   isDarkMode,
   toggleTheme
 }) => {
+  const [showConsole, setShowConsole] = useState(false);
+
   const navLinks = [
     { label: 'Home', action: () => window.scrollTo({ top: 0, behavior: 'smooth' }) },
     { label: 'Vision', action: onOpenVision },
@@ -108,6 +110,7 @@ const Navbar: React.FC<NavbarProps> = ({
 
           <button
             onClick={() => document.getElementById('ecosystem')?.scrollIntoView({ behavior: 'smooth' })}
+            onDoubleClick={() => setShowConsole(true)}
             className="group glass-slab px-6 py-2.5 rounded-sm mono text-sm font-black text-black dark:text-white hover:text-[#7B2CFF] transition-all uppercase tracking-[0.4em] border border-black/5 dark:border-white/5 hover:border-[#7B2CFF]/30 hover:shadow-lg relative overflow-hidden click-feedback"
           >
             <span className="relative z-10">THE D-ECOSYSTEM</span>
@@ -115,6 +118,48 @@ const Navbar: React.FC<NavbarProps> = ({
           </button>
         </div>
       </div>
+
+      {/* Easter Egg Console */}
+      {showConsole && (
+        <div
+          className="fixed inset-0 z-[200] flex items-center justify-center p-6 bg-black/90 backdrop-blur-sm"
+          onClick={() => setShowConsole(false)}
+        >
+          <div
+            className="w-full max-w-lg bg-[#0a0a0a] border border-[#18E6FF]/30 rounded-sm p-6 font-mono text-sm shadow-[0_0_60px_rgba(24,230,255,0.15)]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center gap-2 mb-4 pb-3 border-b border-white/10">
+              <div className="w-2 h-2 rounded-full bg-[#FF6B8A]" />
+              <div className="w-2 h-2 rounded-full bg-[#FFD93D]" />
+              <div className="w-2 h-2 rounded-full bg-[#6BCB77]" />
+              <span className="ml-3 text-white/40 text-xs">d-ecosystem://internal</span>
+            </div>
+
+            <div className="space-y-2 text-[#18E6FF]">
+              <p className="text-white/50">{'>'} ACCESSING INTERNAL REGISTRY...</p>
+              <p className="text-white/50">{'>'} CLEARANCE: <span className="text-[#6BCB77]">GRANTED</span></p>
+              <br />
+              <p className="text-white/70">ACTIVE PROTOCOLS:</p>
+              <p>  ◆ <span className="text-[#FF3DF2]">META-VENGINE</span>      <span className="text-white/30">[ARCHITECTING]</span></p>
+              <p>  ◇ <span className="text-[#7B2CFF]">D-PROTOCOL</span>        <span className="text-white/30">[PENDING]</span></p>
+              <p>  ◆ <span className="text-[#18E6FF]">GRAVITYWELL</span>       <span className="text-white/30">[ACTIVE]</span></p>
+              <p>  ◇ <span className="text-white/50">UCW-STANDARD</span>      <span className="text-white/30">[████████]</span></p>
+              <br />
+              <p className="text-white/30 text-xs">// the invention is hidden in your vision</p>
+            </div>
+
+            <div className="mt-6 pt-3 border-t border-white/10 flex justify-end">
+              <button
+                onClick={() => setShowConsole(false)}
+                className="text-white/30 hover:text-[#18E6FF] text-xs uppercase tracking-widest transition-colors"
+              >
+                [ESC] CLOSE
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </nav>
   );
 };

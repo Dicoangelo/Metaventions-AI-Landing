@@ -29,7 +29,7 @@ const Hero: React.FC<HeroProps> = ({ onOpenSignUp }) => {
       
       <h1 className="text-7xl md:text-9xl font-black tracking-tight mb-10 leading-[0.85] text-black dark:text-white transition-colors duration-500">
         Let the invention <br />
-        be <span className="sovereign-spectrum italic">hidden in your vision.</span>
+        be <span className="sovereign-spectrum italic animate-flicker">hidden in your vision.</span>
       </h1>
       
       <p className="max-w-3xl text-xl md:text-2xl text-black dark:text-white/80 mb-16 leading-relaxed font-light tracking-tight px-4 transition-colors duration-500">
