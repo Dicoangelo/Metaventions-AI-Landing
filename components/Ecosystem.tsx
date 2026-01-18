@@ -69,30 +69,72 @@ const Ecosystem: React.FC<EcosystemProps> = ({ onOpenProduct }) => {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
         {cards.map((card, idx) => (
-          <div 
-            key={idx} 
+          <div
+            key={idx}
             className={`group relative reveal-hidden ${isVisible ? 'reveal-visible' : ''}`}
             style={{ transitionDelay: `${(idx + 1) * 150}ms` }}
           >
-            <div className="relative glass-slab h-full p-12 rounded-sm flex flex-col border-black/10 dark:border-white/10 transition-all duration-700 group-hover:-translate-y-4 group-hover:shadow-[0_40px_80px_rgba(0,0,0,0.1)] dark:group-hover:shadow-[0_40px_80px_rgba(0,0,0,0.5)] group-hover:border-[#18E6FF]/40 click-feedback">
+            {/* Glow effect behind card */}
+            <div
+              className="absolute -inset-1 rounded-sm opacity-0 group-hover:opacity-40 blur-xl transition-opacity duration-700"
+              style={{ backgroundColor: card.glow }}
+            />
+
+            <div
+              className="relative glass-slab h-full p-12 rounded-sm flex flex-col border border-black/10 dark:border-white/10 transition-all duration-500 group-hover:-translate-y-3 group-hover:scale-[1.02] click-feedback"
+              style={{
+                '--card-glow': card.glow,
+                boxShadow: 'none',
+              } as React.CSSProperties}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = `${card.glow}60`;
+                e.currentTarget.style.boxShadow = `0 25px 60px ${card.glow}20, 0 0 40px ${card.glow}10`;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = '';
+                e.currentTarget.style.boxShadow = 'none';
+              }}
+            >
               <div className="flex justify-between items-start mb-12">
-                <span className="mono text-[11px] font-black text-black/40 dark:text-white/40 tracking-[0.4em] transition-colors duration-500">{card.id}</span>
-                <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: card.glow, boxShadow: `0 0 10px ${card.glow}` }}></div>
+                <span className="mono text-[11px] font-black text-black/40 dark:text-white/40 tracking-[0.4em] transition-all duration-500 group-hover:text-black/60 dark:group-hover:text-white/60">{card.id}</span>
+                <div
+                  className="w-2 h-2 rounded-full transition-all duration-500 group-hover:scale-150"
+                  style={{
+                    backgroundColor: card.glow,
+                    boxShadow: `0 0 10px ${card.glow}`,
+                  }}
+                />
               </div>
-              
-              <h3 className="text-3xl font-black mb-8 text-black dark:text-white tracking-tighter leading-none transition-colors duration-500">{card.title}</h3>
+
+              <h3
+                className="text-3xl font-black mb-8 text-black dark:text-white tracking-tighter leading-none transition-all duration-500"
+                style={{ '--hover-color': card.glow } as React.CSSProperties}
+                onMouseEnter={(e) => e.currentTarget.style.color = card.glow}
+                onMouseLeave={(e) => e.currentTarget.style.color = ''}
+              >
+                {card.title}
+              </h3>
               <p className="text-black/70 dark:text-white/70 text-lg leading-relaxed font-light mb-12 transition-colors duration-500">
                 {card.text}
               </p>
-              
-              <div className="mt-auto pt-10 border-t border-black/10 dark:border-white/10 flex items-center justify-between transition-colors duration-500">
+
+              <div className="mt-auto pt-10 border-t border-black/10 dark:border-white/10 group-hover:border-opacity-30 flex items-center justify-between transition-all duration-500">
                 <button
                   onClick={onOpenProduct}
-                  className="mono text-black/50 dark:text-white/50 text-[10px] font-black tracking-[0.4em] uppercase hover:text-[#18E6FF] transition-colors cursor-pointer"
+                  className="mono text-black/50 dark:text-white/50 text-[10px] font-black tracking-[0.4em] uppercase transition-colors duration-300 cursor-pointer"
+                  style={{ '--btn-hover': card.glow } as React.CSSProperties}
+                  onMouseEnter={(e) => e.currentTarget.style.color = card.glow}
+                  onMouseLeave={(e) => e.currentTarget.style.color = ''}
                 >
                   INIT_ACCESS
                 </button>
-                <svg className="w-4 h-4 text-black/20 dark:text-white/20 group-hover:text-[#18E6FF]/40 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg
+                  className="w-4 h-4 text-black/20 dark:text-white/20 transition-all duration-500 group-hover:translate-x-1"
+                  style={{ color: undefined }}
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </div>
