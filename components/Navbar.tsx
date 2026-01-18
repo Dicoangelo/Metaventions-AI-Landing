@@ -106,8 +106,8 @@ const Navbar: React.FC<NavbarProps> = ({
             )}
           </button>
 
-          <button 
-            onClick={onOpenSettings}
+          <button
+            onClick={() => document.getElementById('ecosystem')?.scrollIntoView({ behavior: 'smooth' })}
             className="group glass-slab px-6 py-2.5 rounded-sm mono text-sm font-black text-black dark:text-white hover:text-[#7B2CFF] transition-all uppercase tracking-[0.4em] border border-black/5 dark:border-white/5 hover:border-[#7B2CFF]/30 hover:shadow-lg relative overflow-hidden click-feedback"
           >
             <span className="relative z-10">THE D-ECOSYSTEM</span>

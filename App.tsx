@@ -19,7 +19,7 @@ const GenesisSequence = lazy(() => import('./components/GenesisSequence'));
 const App: React.FC = () => {
   const [customBg, setCustomBg] = useState<string | null>(null);
   const [bgOpacity, setBgOpacity] = useState<number>(0.4);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
   const [isContactOpen, setIsContactOpen] = useState(false);
@@ -43,8 +43,12 @@ const App: React.FC = () => {
     
     if (storedBg) setCustomBg(storedBg);
     if (storedOpacity) setBgOpacity(parseFloat(storedOpacity));
-    if (storedTheme === 'dark') {
-      setIsDarkMode(true);
+
+    // Dark mode is default; only switch to light if explicitly stored
+    if (storedTheme === 'light') {
+      setIsDarkMode(false);
+      document.body.classList.remove('dark');
+    } else {
       document.body.classList.add('dark');
     }
 
