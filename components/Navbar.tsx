@@ -119,43 +119,59 @@ const Navbar: React.FC<NavbarProps> = ({
         </div>
       </div>
 
-      {/* Easter Egg Console */}
+      {/* Easter Egg Console - Golden Terminal */}
       {showConsole && (
         <div
-          className="fixed inset-0 z-[200] flex items-center justify-center p-6 bg-black/90 backdrop-blur-sm"
+          className="fixed inset-0 z-[200] flex items-center justify-center p-6 bg-black/70 backdrop-blur-md"
           onClick={() => setShowConsole(false)}
         >
           <div
-            className="w-full max-w-lg bg-[#0a0a0a] border border-[#18E6FF]/30 rounded-sm p-6 font-mono text-sm shadow-[0_0_60px_rgba(24,230,255,0.15)]"
+            className="w-full max-w-xl glass-gold rounded-sm p-10 relative overflow-hidden shadow-[0_0_120px_rgba(215,178,109,0.4)] animate-in zoom-in-95 duration-200 ease-out"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center gap-2 mb-4 pb-3 border-b border-white/10">
-              <div className="w-2 h-2 rounded-full bg-[#FF6B8A]" />
-              <div className="w-2 h-2 rounded-full bg-[#FFD93D]" />
-              <div className="w-2 h-2 rounded-full bg-[#6BCB77]" />
-              <span className="ml-3 text-white/40 text-xs">d-ecosystem://internal</span>
+            {/* Gold gradient top bar */}
+            <div className="absolute top-0 left-0 w-full h-[4px] bg-gradient-to-r from-[#D7B26D] via-[#F9D976] to-[#B38728]"></div>
+
+            {/* Close button */}
+            <button
+              onClick={() => setShowConsole(false)}
+              className="absolute top-4 right-6 mono text-gold hover:text-white text-2xl transition-colors"
+            >
+              ×
+            </button>
+
+            {/* Header */}
+            <div className="mb-8 text-center">
+              <span className="mono text-[9px] font-black tracking-[0.8em] text-gold uppercase block mb-4">CLASSIFIED</span>
+              <h2 className="text-3xl font-black text-white tracking-tighter">
+                Internal <span className="gold-spectrum italic">Registry</span>
+              </h2>
             </div>
 
-            <div className="space-y-2 text-[#18E6FF]">
-              <p className="text-white/50">{'>'} ACCESSING INTERNAL REGISTRY...</p>
-              <p className="text-white/50">{'>'} CLEARANCE: <span className="text-[#6BCB77]">GRANTED</span></p>
-              <br />
-              <p className="text-white/70">ACTIVE PROTOCOLS:</p>
-              <p>  ◆ <span className="text-[#FF3DF2]">META-VENGINE</span>      <span className="text-white/30">[ARCHITECTING]</span></p>
-              <p>  ◇ <span className="text-[#7B2CFF]">D-PROTOCOL</span>        <span className="text-white/30">[PENDING]</span></p>
-              <p>  ◆ <span className="text-[#18E6FF]">GRAVITYWELL</span>       <span className="text-white/30">[ACTIVE]</span></p>
-              <p>  ◇ <span className="text-white/50">UCW-STANDARD</span>      <span className="text-white/30">[████████]</span></p>
-              <br />
-              <p className="text-white/30 text-xs">// the invention is hidden in your vision</p>
+            {/* Terminal content */}
+            <div className="bg-black/60 border border-gold/20 rounded-sm p-6 font-mono text-sm mb-6">
+              <div className="flex items-center gap-2 mb-4 pb-3 border-b border-gold/20">
+                <div className="w-2 h-2 rounded-full bg-[#D7B26D]" />
+                <div className="w-2 h-2 rounded-full bg-[#F9D976]" />
+                <div className="w-2 h-2 rounded-full bg-[#B38728]" />
+                <span className="ml-3 text-gold/60 text-xs">d-ecosystem://internal</span>
+              </div>
+
+              <div className="space-y-2">
+                <p className="text-gold/70">{'>'} ACCESSING INTERNAL REGISTRY...</p>
+                <p className="text-gold/70">{'>'} CLEARANCE: <span className="text-[#F9D976]">GRANTED</span></p>
+                <br />
+                <p className="text-gold font-bold">ACTIVE PROTOCOLS:</p>
+                <p className="text-white/80">  ◆ <span className="text-[#F9D976] font-bold">META-VENGINE</span>      <span className="text-gold/40">[ARCHITECTING]</span></p>
+                <p className="text-white/80">  ◇ <span className="text-[#D7B26D]">D-PROTOCOL</span>        <span className="text-gold/40">[PENDING]</span></p>
+                <p className="text-white/80">  ◆ <span className="text-[#F9D976] font-bold">GRAVITYWELL</span>       <span className="text-gold/40">[ACTIVE]</span></p>
+                <p className="text-white/80">  ◇ <span className="text-gold/50">UCW-STANDARD</span>      <span className="text-gold/40">[████████]</span></p>
+              </div>
             </div>
 
-            <div className="mt-6 pt-3 border-t border-white/10 flex justify-end">
-              <button
-                onClick={() => setShowConsole(false)}
-                className="text-white/30 hover:text-[#18E6FF] text-xs uppercase tracking-widest transition-colors"
-              >
-                [ESC] CLOSE
-              </button>
+            {/* Footer */}
+            <div className="text-center">
+              <p className="mono text-[9px] text-gold/50 tracking-[0.4em] uppercase">// the invention is hidden in your vision</p>
             </div>
           </div>
         </div>
