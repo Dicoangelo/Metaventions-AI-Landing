@@ -30,19 +30,19 @@ const Ecosystem: React.FC<EcosystemProps> = ({ onOpenProduct }) => {
   const cards = [
     {
       title: "Structura OS",
-      text: "A modular operating environment designed for total digital autonomy. Integrate assets, logic, and voice cores into a single, reactive dashboard.",
+      text: "The operating environment where vision materializes. Integrate assets, logic, and voice cores into a single, reactive system.",
       id: "S-01",
       glow: "#18E6FF"
     },
     {
       title: "Agentic Partner Weaver",
-      text: "A framework for high-fidelity collaboration between human operators and autonomous agents. Redefining how intelligence interacts.",
+      text: "A framework for high-fidelity collaboration between human operators and autonomous agents. Where intelligence is architected, not prompted.",
       id: "P-02",
       glow: "#7B2CFF"
     },
     {
       title: "Metavention Labs",
-      text: "Rapid prototyping of Web3 protocols, generative inputs, and neural architectures. Where the future is built, layer by layer.",
+      text: "Rapid prototyping of protocols, generative systems, and neural architectures. Where invention emerges from vision.",
       id: "L-03",
       glow: "#FF6B8A"
     }

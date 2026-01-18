@@ -33,7 +33,7 @@ const Hero: React.FC<HeroProps> = ({ onOpenSignUp }) => {
       </h1>
       
       <p className="max-w-3xl text-xl md:text-2xl text-black dark:text-white/80 mb-16 leading-relaxed font-light tracking-tight px-4 transition-colors duration-500">
-        Metaventions AI is a research studio focused on <span className="text-black dark:text-white font-bold transition-colors duration-500">Architected Intelligence</span>—building systems that seamlessly bridge human intent with autonomous agentic workflows.
+        Metaventions AI is a research studio focused on <span className="text-black dark:text-white font-bold transition-colors duration-500">Architected Intelligence</span>—architecting systems that transform vision into working infrastructure.
       </p>
 
       {/* Orbital Telemetry & CTA Area */}
