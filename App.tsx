@@ -111,7 +111,7 @@ const App: React.FC = () => {
       <main className="relative pt-20 px-4 max-w-7xl mx-auto">
         <Hero onOpenSignUp={() => setIsSignUpOpen(true)} />
         <Mission />
-        <Ecosystem />
+        <Ecosystem onOpenProduct={() => setIsProductOpen(true)} />
       </main>
 
       <Footer />

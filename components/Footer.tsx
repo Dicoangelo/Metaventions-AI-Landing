@@ -19,7 +19,7 @@ const Footer: React.FC = () => {
              <div className="w-7 h-7 border-sovereign rounded-sm bg-white dark:bg-obsidian"></div>
              METAVENTIONS <span className="text-[#18E6FF]">AI</span>
           </div>
-          <p className="text-black dark:text-white/50 mono text-[9px] tracking-[0.3em] uppercase font-bold transition-colors duration-500">&copy; 2025 Metaventions AI // MANHATTAN, NY // Orbital_Core_01</p>
+          <p className="text-black dark:text-white/50 mono text-[9px] tracking-[0.3em] uppercase font-bold transition-colors duration-500">&copy; 2026 Metaventions AI // MANHATTAN, NY // Orbital_Core_01</p>
         </div>
 
         <div className="flex flex-wrap justify-center gap-8 md:gap-16">

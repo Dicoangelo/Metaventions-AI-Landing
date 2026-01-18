@@ -1,7 +1,11 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 
-const Ecosystem: React.FC = () => {
+interface EcosystemProps {
+  onOpenProduct?: () => void;
+}
+
+const Ecosystem: React.FC<EcosystemProps> = ({ onOpenProduct }) => {
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -82,7 +86,12 @@ const Ecosystem: React.FC = () => {
               </p>
               
               <div className="mt-auto pt-10 border-t border-black/10 dark:border-white/10 flex items-center justify-between transition-colors duration-500">
-                <button className="mono text-black/30 dark:text-white/30 text-[10px] font-black tracking-[0.4em] uppercase cursor-default">INIT_ACCESS</button>
+                <button
+                  onClick={onOpenProduct}
+                  className="mono text-black/50 dark:text-white/50 text-[10px] font-black tracking-[0.4em] uppercase hover:text-[#18E6FF] transition-colors cursor-pointer"
+                >
+                  INIT_ACCESS
+                </button>
                 <svg className="w-4 h-4 text-black/20 dark:text-white/20 group-hover:text-[#18E6FF]/40 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
