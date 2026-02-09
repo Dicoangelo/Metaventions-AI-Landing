@@ -49,25 +49,25 @@ const Ecosystem: React.FC<EcosystemProps> = ({ onOpenProduct }) => {
   ];
 
   return (
-    <section 
+    <section
       id="ecosystem"
       ref={sectionRef}
-      className="py-40"
+      className="py-16 sm:py-24 lg:py-40"
     >
-      <div className={`flex flex-col md:flex-row justify-between items-end mb-28 border-b border-black/10 dark:border-white/10 pb-12 transition-colors duration-500 reveal-hidden ${isVisible ? 'reveal-visible' : ''}`}>
-        <div className="max-w-2xl">
-          <h2 className="text-5xl md:text-6xl font-black tracking-tighter text-black dark:text-white mb-6">The Ecosystem</h2>
-          <p className="text-black/60 dark:text-white/60 mono text-[10px] tracking-[0.5em] uppercase font-bold">Disciplined Futurism // Multi-Layer Protocols</p>
+      <div className={`flex flex-col md:flex-row justify-between items-start md:items-end mb-12 sm:mb-16 lg:mb-28 border-b border-black/10 dark:border-white/10 pb-8 sm:pb-10 lg:pb-12 transition-colors duration-500 reveal-hidden ${isVisible ? 'reveal-visible' : ''}`}>
+        <div className="max-w-2xl mb-6 md:mb-0">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter text-black dark:text-white mb-4 sm:mb-6">The Ecosystem</h2>
+          <p className="text-black/60 dark:text-white/60 mono text-[9px] sm:text-[10px] tracking-[0.3em] sm:tracking-[0.5em] uppercase font-bold">Disciplined Futurism // Multi-Layer Protocols</p>
         </div>
-        <div className="hidden md:block">
-           <div className="mono text-[9px] text-black/50 dark:text-white/50 text-right font-black transition-colors duration-500">
-              LATENCY: 0.002ms<br/>
-              NODES_ACTIVE: 1,492
-           </div>
+        <div className="md:block">
+          <div className="mono text-[8px] sm:text-[9px] text-black/50 dark:text-white/50 text-left md:text-right font-black transition-colors duration-500">
+            LATENCY: 0.002ms<br />
+            NODES_ACTIVE: 1,492
+          </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-12">
         {cards.map((card, idx) => (
           <div
             key={idx}
@@ -81,7 +81,7 @@ const Ecosystem: React.FC<EcosystemProps> = ({ onOpenProduct }) => {
             />
 
             <div
-              className="relative glass-slab h-full p-12 rounded-sm flex flex-col border border-black/10 dark:border-white/10 transition-all duration-500 group-hover:-translate-y-3 group-hover:scale-[1.02] click-feedback"
+              className="relative glass-slab h-full p-6 sm:p-8 lg:p-12 rounded-sm flex flex-col border border-black/10 dark:border-white/10 transition-all duration-500 group-hover:-translate-y-2 lg:group-hover:-translate-y-3 group-hover:scale-[1.01] lg:group-hover:scale-[1.02] click-feedback"
               style={{
                 '--card-glow': card.glow,
                 boxShadow: 'none',
@@ -95,8 +95,8 @@ const Ecosystem: React.FC<EcosystemProps> = ({ onOpenProduct }) => {
                 e.currentTarget.style.boxShadow = 'none';
               }}
             >
-              <div className="flex justify-between items-start mb-12">
-                <span className="mono text-[11px] font-black text-black/40 dark:text-white/40 tracking-[0.4em] transition-all duration-500 group-hover:text-black/60 dark:group-hover:text-white/60">{card.id}</span>
+              <div className="flex justify-between items-start mb-6 sm:mb-8 lg:mb-12">
+                <span className="mono text-[10px] sm:text-[11px] font-black text-black/40 dark:text-white/40 tracking-[0.3em] sm:tracking-[0.4em] transition-all duration-500 group-hover:text-black/60 dark:group-hover:text-white/60">{card.id}</span>
                 <div
                   className="w-2 h-2 rounded-full transition-all duration-500 group-hover:scale-150"
                   style={{
@@ -107,21 +107,21 @@ const Ecosystem: React.FC<EcosystemProps> = ({ onOpenProduct }) => {
               </div>
 
               <h3
-                className="text-3xl font-black mb-8 text-black dark:text-white tracking-tighter leading-none transition-all duration-500"
+                className="text-xl sm:text-2xl lg:text-3xl font-black mb-4 sm:mb-6 lg:mb-8 text-black dark:text-white tracking-tighter leading-none transition-all duration-500"
                 style={{ '--hover-color': card.glow } as React.CSSProperties}
                 onMouseEnter={(e) => e.currentTarget.style.color = card.glow}
                 onMouseLeave={(e) => e.currentTarget.style.color = ''}
               >
                 {card.title}
               </h3>
-              <p className="text-black/70 dark:text-white/70 text-lg leading-relaxed font-light mb-12 transition-colors duration-500">
+              <p className="text-black/70 dark:text-white/70 text-sm sm:text-base lg:text-lg leading-relaxed font-light mb-6 sm:mb-8 lg:mb-12 transition-colors duration-500">
                 {card.text}
               </p>
 
-              <div className="mt-auto pt-10 border-t border-black/10 dark:border-white/10 group-hover:border-opacity-30 flex items-center justify-between transition-all duration-500">
+              <div className="mt-auto pt-6 sm:pt-8 lg:pt-10 border-t border-black/10 dark:border-white/10 group-hover:border-opacity-30 flex items-center justify-between transition-all duration-500">
                 <button
                   onClick={onOpenProduct}
-                  className="mono text-black/50 dark:text-white/50 text-[10px] font-black tracking-[0.4em] uppercase transition-colors duration-300 cursor-pointer"
+                  className="mono text-black/50 dark:text-white/50 text-[9px] sm:text-[10px] font-black tracking-[0.3em] sm:tracking-[0.4em] uppercase transition-colors duration-300 cursor-pointer py-2"
                   style={{ '--btn-hover': card.glow } as React.CSSProperties}
                   onMouseEnter={(e) => e.currentTarget.style.color = card.glow}
                   onMouseLeave={(e) => e.currentTarget.style.color = ''}
