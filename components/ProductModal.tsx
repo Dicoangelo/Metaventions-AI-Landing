@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import { useModalA11y } from '../hooks/useModalA11y';
 
 interface ProductModalProps {
   isOpen: boolean;
@@ -9,6 +10,7 @@ interface ProductModalProps {
 
 const ProductModal: React.FC<ProductModalProps> = ({ isOpen, onClose, isDarkMode }) => {
   const [syncing, setSyncing] = useState(true);
+  const modalRef = useModalA11y(isOpen, onClose);
 
   useEffect(() => {
     if (isOpen) {
@@ -27,12 +29,13 @@ const ProductModal: React.FC<ProductModalProps> = ({ isOpen, onClose, isDarkMode
   ];
 
   return (
-    <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-sm transition-opacity duration-200">
-      <div className="w-full max-w-6xl glass-modal rounded-sm p-6 sm:p-8 lg:p-12 relative overflow-y-auto max-h-[90vh] shadow-2xl min-h-[480px] sm:min-h-[580px] animate-in zoom-in-95 duration-200 ease-out">
+    <div ref={modalRef} role="dialog" aria-modal="true" aria-label="Product" onClick={onClose} className="fixed inset-0 z-[110] flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-sm transition-opacity duration-200">
+      <div onClick={(e) => e.stopPropagation()} className="w-full max-w-6xl glass-modal rounded-sm p-6 sm:p-8 lg:p-12 relative overflow-y-auto max-h-[90vh] shadow-2xl min-h-[480px] sm:min-h-[580px] animate-in zoom-in-95 duration-200 ease-out">
         <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-[#FF3DF2] via-[#7B2CFF] to-[#18E6FF] z-30"></div>
 
         <button
           onClick={onClose}
+          aria-label="Close"
           className="absolute top-4 sm:top-6 right-4 sm:right-8 mono text-black/30 dark:text-white/30 hover:text-[#18E6FF] text-2xl transition-colors click-feedback z-30"
         >
           ×

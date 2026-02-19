@@ -1,6 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
+import { track } from '@vercel/analytics';
 import { submitContact } from '../lib/supabase';
+import { useModalA11y } from '../hooks/useModalA11y';
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -12,8 +14,8 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose, isDarkMode
   const [status, setStatus] = useState<'idle' | 'sending' | 'success'>('idle');
   const [syncing, setSyncing] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const modalRef = useModalA11y(isOpen, onClose);
 
-  // Form fields
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [objective, setObjective] = useState('STRUCTURA_BETA_ACCESS');
@@ -40,7 +42,7 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose, isDarkMode
 
     if (result.success) {
       setStatus('success');
-      // Reset form
+      track('contact_success', { objective });
       setName('');
       setEmail('');
       setObjective('STRUCTURA_BETA_ACCESS');
@@ -52,12 +54,13 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose, isDarkMode
   };
 
   return (
-    <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-sm transition-opacity duration-200">
-      <div className="w-full max-w-2xl glass-modal rounded-sm p-6 sm:p-8 lg:p-12 relative overflow-y-auto max-h-[90vh] shadow-2xl min-h-[480px] sm:min-h-[580px] animate-in slide-in-from-bottom-2 fade-in duration-200 ease-out">
+    <div ref={modalRef} role="dialog" aria-modal="true" aria-label="Contact" onClick={onClose} className="fixed inset-0 z-[110] flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-sm transition-opacity duration-200">
+      <div onClick={(e) => e.stopPropagation()} className="w-full max-w-2xl glass-modal rounded-sm p-6 sm:p-8 lg:p-12 relative overflow-y-auto max-h-[90vh] shadow-2xl min-h-[480px] sm:min-h-[580px] animate-in slide-in-from-bottom-2 fade-in duration-200 ease-out">
         <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-[#FF3DF2] via-[#7B2CFF] to-[#18E6FF] z-30"></div>
 
         <button
           onClick={onClose}
+          aria-label="Close"
           className="absolute top-4 sm:top-6 right-4 sm:right-8 mono text-black/40 dark:text-white/40 hover:text-[#18E6FF] transition-colors click-feedback text-2xl z-30"
         >
           ×

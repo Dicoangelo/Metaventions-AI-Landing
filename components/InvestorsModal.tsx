@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import { useModalA11y } from '../hooks/useModalA11y';
 
 interface InvestorsModalProps {
   isOpen: boolean;
@@ -9,6 +10,7 @@ interface InvestorsModalProps {
 
 const InvestorsModal: React.FC<InvestorsModalProps> = ({ isOpen, onClose, isDarkMode }) => {
   const [syncing, setSyncing] = useState(true);
+  const modalRef = useModalA11y(isOpen, onClose);
 
   useEffect(() => {
     if (isOpen) {
@@ -21,8 +23,8 @@ const InvestorsModal: React.FC<InvestorsModalProps> = ({ isOpen, onClose, isDark
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 sm:p-6 bg-black/70 backdrop-blur-md transition-opacity duration-200">
-      <div className="w-full max-w-4xl glass-gold rounded-sm p-6 sm:p-10 lg:p-16 relative overflow-y-auto max-h-[90vh] shadow-[0_0_80px_rgba(215,178,109,0.3)] sm:shadow-[0_0_120px_rgba(215,178,109,0.4)] min-h-[480px] sm:min-h-[580px] animate-in zoom-in-95 duration-200 ease-out">
+    <div ref={modalRef} role="dialog" aria-modal="true" aria-label="Investors" onClick={onClose} className="fixed inset-0 z-[110] flex items-center justify-center p-4 sm:p-6 bg-black/70 backdrop-blur-md transition-opacity duration-200">
+      <div onClick={(e) => e.stopPropagation()} className="w-full max-w-4xl glass-gold rounded-sm p-6 sm:p-10 lg:p-16 relative overflow-y-auto max-h-[90vh] shadow-[0_0_80px_rgba(215,178,109,0.3)] sm:shadow-[0_0_120px_rgba(215,178,109,0.4)] min-h-[480px] sm:min-h-[580px] animate-in zoom-in-95 duration-200 ease-out">
         <div className="absolute top-0 left-0 w-full h-[4px] sm:h-[6px] bg-gradient-to-r from-[#D7B26D] via-[#F9D976] to-[#B38728] z-30"></div>
 
         <button

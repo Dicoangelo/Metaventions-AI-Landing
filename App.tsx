@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect, lazy, Suspense } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Mission from './components/Mission';
@@ -27,9 +28,9 @@ const App: React.FC = () => {
   const [isProductOpen, setIsProductOpen] = useState(false);
   const [isInvestorsOpen, setIsInvestorsOpen] = useState(false);
 
-  // Genesis Sequence state - DISABLED pending professional implementation
-  // Concept documented at: ~/.agent-core/brand/GENESIS-SEQUENCE.md
-  const [showGenesis, setShowGenesis] = useState(false);
+  const [showGenesis, setShowGenesis] = useState(
+    !localStorage.getItem('metaventions_seen_genesis')
+  );
 
   const handleGenesisComplete = () => {
     setShowGenesis(false);
@@ -94,6 +95,8 @@ const App: React.FC = () => {
 
   return (
     <div className={`relative min-h-screen selection:bg-[#7B2CFF]/30 overflow-x-hidden ${isDarkMode ? 'dark' : ''}`}>
+      <a href="#main-content" className="skip-to-content">Skip to main content</a>
+
       {/* Genesis Sequence - The D-Ecosystem Origin Story */}
       {showGenesis && (
         <Suspense fallback={<div className="fixed inset-0 bg-black z-[9999]" />}>
@@ -112,7 +115,7 @@ const App: React.FC = () => {
         toggleTheme={toggleTheme}
       />
       
-      <main className="relative pt-20 px-4 max-w-7xl mx-auto">
+      <main id="main-content" className="relative pt-20 px-4 max-w-7xl mx-auto">
         <Hero onOpenSignUp={() => setIsSignUpOpen(true)} />
         <Mission />
         <Ecosystem onOpenProduct={() => setIsProductOpen(true)} />
@@ -152,11 +155,13 @@ const App: React.FC = () => {
         isDarkMode={isDarkMode}
       />
 
-      <InvestorsModal 
+      <InvestorsModal
         isOpen={isInvestorsOpen}
         onClose={() => setIsInvestorsOpen(false)}
         isDarkMode={isDarkMode}
       />
+
+      <Analytics />
     </div>
   );
 };

@@ -1,6 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
+import { track } from '@vercel/analytics';
 import { submitSignup } from '../lib/supabase';
+import { useModalA11y } from '../hooks/useModalA11y';
 
 interface SignUpModalProps {
   isOpen: boolean;
@@ -11,8 +13,8 @@ const SignUpModal: React.FC<SignUpModalProps> = ({ isOpen, onClose }) => {
   const [status, setStatus] = useState<'idle' | 'sending' | 'success'>('idle');
   const [syncing, setSyncing] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const modalRef = useModalA11y(isOpen, onClose);
 
-  // Form fields
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [organization, setOrganization] = useState('');
@@ -38,7 +40,7 @@ const SignUpModal: React.FC<SignUpModalProps> = ({ isOpen, onClose }) => {
 
     if (result.success) {
       setStatus('success');
-      // Reset form
+      track('signup_success', { organization });
       setName('');
       setEmail('');
       setOrganization('');
@@ -50,15 +52,19 @@ const SignUpModal: React.FC<SignUpModalProps> = ({ isOpen, onClose }) => {
 
   return (
     <div
-      className="fixed inset-0 z-[101] flex items-center justify-center p-4 sm:p-6 bg-black/70 backdrop-blur-xl transition-opacity duration-200"
+      ref={modalRef}
       role="dialog"
       aria-modal="true"
+      aria-label="Sign Up"
+      onClick={onClose}
+      className="fixed inset-0 z-[101] flex items-center justify-center p-4 sm:p-6 bg-black/70 backdrop-blur-xl transition-opacity duration-200"
     >
-      <div className="w-full max-w-md glass-modal rounded-sm p-6 sm:p-8 lg:p-10 relative overflow-hidden shadow-2xl min-h-[420px] sm:min-h-[480px] animate-in zoom-in-95 duration-200 ease-out">
+      <div onClick={(e) => e.stopPropagation()} className="w-full max-w-md glass-modal rounded-sm p-6 sm:p-8 lg:p-10 relative overflow-hidden shadow-2xl min-h-[420px] sm:min-h-[480px] animate-in zoom-in-95 duration-200 ease-out">
         <div className="absolute top-0 left-0 w-full h-[4px] bg-gradient-to-r from-[#FF3DF2] via-[#7B2CFF] to-[#18E6FF] z-30"></div>
 
         <button
           onClick={onClose}
+          aria-label="Close"
           className="absolute top-3 sm:top-4 right-4 sm:right-6 mono text-black/40 dark:text-white/40 hover:text-amethyst text-xl transition-colors click-feedback z-30"
         >
           ×

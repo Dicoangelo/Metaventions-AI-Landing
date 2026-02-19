@@ -1,5 +1,6 @@
 
 import React, { useRef, useState, useEffect } from 'react';
+import { useModalA11y } from '../hooks/useModalA11y';
 
 interface SettingsModalProps {
   isOpen: boolean;
@@ -10,10 +11,10 @@ interface SettingsModalProps {
   onUpdateOpacity: (opacity: number) => void;
 }
 
-const SettingsModal: React.FC<SettingsModalProps> = ({ 
-  isOpen, 
-  onClose, 
-  onUpdateBg, 
+const SettingsModal: React.FC<SettingsModalProps> = ({
+  isOpen,
+  onClose,
+  onUpdateBg,
   currentBg,
   bgOpacity,
   onUpdateOpacity
@@ -21,6 +22,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [error, setError] = useState<string | null>(null);
   const [syncing, setSyncing] = useState(true);
+  const modalRef = useModalA11y(isOpen, onClose);
 
   useEffect(() => {
     if (isOpen) {
@@ -52,8 +54,8 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-black/60 backdrop-blur-sm transition-opacity duration-200">
-      <div className="w-full max-w-lg glass-modal rounded-sm relative overflow-hidden shadow-2xl min-h-[480px] animate-in zoom-in-95 fade-in duration-200 ease-out">
+    <div ref={modalRef} role="dialog" aria-modal="true" aria-label="Settings" onClick={onClose} className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-black/60 backdrop-blur-sm transition-opacity duration-200">
+      <div onClick={(e) => e.stopPropagation()} className="w-full max-w-lg glass-modal rounded-sm relative overflow-hidden shadow-2xl min-h-[480px] animate-in zoom-in-95 fade-in duration-200 ease-out">
         <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#FF3DF2] via-[#7B2CFF] to-[#18E6FF] z-30"></div>
         
         <button 

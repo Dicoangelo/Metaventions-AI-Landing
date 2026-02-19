@@ -1,0 +1,343 @@
+@import "tailwindcss";
+
+/* ── Tailwind 4 Theme (replaces tailwind.config) ── */
+@theme {
+  --color-midnight: #0B1020;
+  --color-obsidian: #05070D;
+  --color-amethyst: #7B2CFF;
+  --color-cyan: #18E6FF;
+  --color-magenta: #FF3DF2;
+  --color-gold: #D7B26D;
+  --animate-shimmer: shimmer 2s infinite linear;
+  --animate-flicker: flicker 8s infinite;
+}
+
+/* ── CSS Custom Properties ── */
+:root {
+  /* Neutrals */
+  --fog-white: #F5F7FA;
+  --pearl-mist: #E6EDF5;
+  --midnight-navy: #0B1020;
+  --obsidian: #05070D;
+
+  /* Radiance */
+  --cyan: #18E6FF;
+  --cyan-radiance: #18E6FF;
+  --teal: #00FFC6;
+  --holo-blue: #5AA7FF;
+  --amethyst: #7B2CFF;
+  --amethyst-violet: #7B2CFF;
+  --magenta: #FF3DF2;
+
+  /* Warm Accents */
+  --rose-ember: #FF6B8A;
+  --gold: #D7B26D;
+  --gold-glow: rgba(215, 178, 109, 0.4);
+}
+
+/* ── Base Styles ── */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: transparent;
+  margin: 0;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ── Skeleton Shimmer ── */
+.skeleton-shimmer {
+  background: linear-gradient(90deg, rgba(0,0,0,0.05) 25%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.05) 75%);
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite linear;
+}
+.dark .skeleton-shimmer {
+  background: linear-gradient(90deg, rgba(255,255,255,0.03) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.03) 75%);
+  background-size: 1000px 100%;
+}
+
+/* ── Glass Morphism System ── */
+.glass-slab {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(11, 16, 32, 0.05);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+  transition: background 0.5s ease, border 0.5s ease;
+}
+.dark .glass-slab {
+  background: rgba(11, 16, 32, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-liquid-subtle {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.4));
+  backdrop-filter: blur(25px) saturate(160%);
+  border: 0.5px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+}
+.dark .glass-liquid-subtle {
+  background: linear-gradient(135deg, rgba(11, 16, 32, 0.8), rgba(11, 16, 32, 0.4));
+  border: 0.5px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.glass-slab-floating {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 1);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+  transition: background 0.5s ease, border 0.5s ease;
+}
+.dark .glass-slab-floating {
+  background: rgba(11, 16, 32, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-modal {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 1);
+  box-shadow: 0 30px 120px rgba(0, 0, 0, 0.08);
+}
+.dark .glass-modal {
+  background: rgba(5, 7, 13, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 30px 120px rgba(0, 0, 0, 0.4);
+}
+
+.glass-gold {
+  background: linear-gradient(135deg, rgba(215, 178, 109, 0.25), rgba(215, 178, 109, 0.08));
+  backdrop-filter: blur(45px) saturate(200%);
+  border: 1px solid rgba(215, 178, 109, 0.5);
+  box-shadow: 0 0 100px rgba(215, 178, 109, 0.2), inset 0 0 40px rgba(255, 255, 255, 0.1);
+}
+.dark .glass-gold {
+  background: linear-gradient(135deg, rgba(215, 178, 109, 0.15), rgba(215, 178, 109, 0.04));
+  border: 1px solid rgba(215, 178, 109, 0.4);
+  box-shadow: 0 0 120px rgba(215, 178, 109, 0.15);
+}
+
+/* ── Gradient Text Classes ── */
+.sovereign-spectrum {
+  background: linear-gradient(to right, var(--magenta), var(--amethyst), var(--cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-spectrum {
+  background: linear-gradient(to right, #D7B26D, #F9D976, #B38728);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.compute-halo {
+  background: linear-gradient(to right, var(--teal), var(--cyan), var(--holo-blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ── Sovereign Border ── */
+.border-sovereign {
+  border: 1px solid transparent;
+  background: linear-gradient(white, white) padding-box,
+              linear-gradient(to right, var(--magenta), var(--amethyst), var(--cyan)) border-box;
+}
+.dark .border-sovereign {
+  background: linear-gradient(var(--obsidian), var(--obsidian)) padding-box,
+              linear-gradient(to right, var(--magenta), var(--amethyst), var(--cyan)) border-box;
+}
+
+/* ── Grid Background ── */
+.grid-bg-light {
+  background-image:
+    linear-gradient(rgba(11, 16, 32, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(11, 16, 32, 0.02) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+.dark .grid-bg-light {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
+
+/* ── Crystallized Text ── */
+.text-crystallized {
+  color: rgba(11, 16, 32, 0.7);
+  text-shadow: 0 0 2px rgba(255, 255, 255, 0.8), 0 0 10px rgba(24, 230, 255, 0.2);
+  backdrop-filter: blur(1px);
+  font-weight: 700;
+}
+.dark .text-crystallized {
+  color: rgba(255, 255, 255, 0.7);
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.8), 0 0 10px rgba(24, 230, 255, 0.2);
+}
+
+/* ── Keyframes ── */
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+
+@keyframes flicker {
+  0%, 94%, 100% { opacity: 1; filter: blur(0); }
+  95% { opacity: 0.8; filter: blur(1px); color: #18E6FF; }
+  96% { opacity: 0.4; filter: blur(0); color: #FF3DF2; }
+  97% { opacity: 1; filter: blur(0.5px); color: #7B2CFF; }
+  98% { opacity: 0.9; filter: blur(0); }
+}
+
+@keyframes holo-pulse {
+  0%, 100% {
+    text-shadow: 0 0 4px rgba(255, 255, 255, 0.8), 0 0 8px var(--cyan-radiance);
+    filter: brightness(1);
+  }
+  50% {
+    text-shadow: 0 0 4px rgba(255, 255, 255, 0.8), 0 0 12px var(--amethyst-violet);
+    filter: brightness(1.1);
+  }
+}
+
+@keyframes loop-scroll-rtl {
+  from { transform: translateX(100%); }
+  to { transform: translateX(-100%); }
+}
+
+@keyframes subtle-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes rotate-ui {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Modal animation keyframes (used via Tailwind classes in components) */
+@keyframes animate-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes zoom-in-95 {
+  from { transform: scale(0.95); }
+  to { transform: scale(1); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-in-from-bottom-2 {
+  from { transform: translateY(0.5rem); }
+  to { transform: translateY(0); }
+}
+
+/* ── Animation Utility Classes ── */
+.holo-text-pulse {
+  animation: holo-pulse 4s infinite ease-in-out;
+}
+
+.animate-scroll-rtl {
+  display: inline-block;
+  white-space: nowrap;
+  animation: loop-scroll-rtl 20s linear infinite;
+}
+
+.float {
+  animation: subtle-float 6s infinite ease-in-out;
+}
+
+.ui-ring {
+  animation: rotate-ui 20s linear infinite;
+}
+
+/* Composite modal enter animation */
+.animate-in {
+  animation: animate-in 200ms ease-out, zoom-in-95 200ms ease-out;
+}
+
+.animate-in.fade-in {
+  animation: fade-in 200ms ease-out, zoom-in-95 200ms ease-out;
+}
+
+.animate-in.slide-in-from-bottom-2 {
+  animation: slide-in-from-bottom-2 200ms ease-out, fade-in 200ms ease-out;
+}
+
+/* ── Click Feedback ── */
+.click-feedback {
+  transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.click-feedback:active {
+  transform: scale(0.96);
+}
+
+/* ── Scroll Reveal ── */
+.reveal-hidden {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Navigation Link Underline ── */
+.nav-link {
+  position: relative;
+  padding-bottom: 8px;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 5px;
+  background: linear-gradient(to right, var(--magenta), var(--amethyst), var(--cyan));
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-link-gold::after {
+  background: linear-gradient(to right, #D7B26D, #F9D976, #B38728);
+}
+
+/* ── Custom scale utility (not in Tailwind) ── */
+.scale-98 {
+  transform: scale(0.98);
+}
+
+/* ── Skip to Content (Accessibility) ── */
+.skip-to-content {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  z-index: 9999;
+  padding: 1rem 1.5rem;
+  background: #7B2CFF;
+  color: white;
+  font-weight: 700;
+  font-size: 0.875rem;
+  text-decoration: none;
+  border-radius: 0 0 0.25rem 0;
+}
+.skip-to-content:focus {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: auto;
+  height: auto;
+  overflow: visible;
+}
