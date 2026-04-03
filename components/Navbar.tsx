@@ -56,9 +56,7 @@ const Navbar: React.FC<NavbarProps> = ({
               </svg>
             </div>
             <span className="mono font-black text-sm sm:text-base lg:text-xl tracking-wider sm:tracking-widest text-[#0B1020] dark:text-white transition-colors duration-500 holo-text-pulse">
-              <span className="hidden xs:inline">METAVENTIONS</span>
-              <span className="xs:hidden">META</span>
-              <span className="text-[#18E6FF]"> AI</span>
+              METAVENTIONS<span className="text-[#18E6FF]"> AI</span>
             </span>
           </button>
 

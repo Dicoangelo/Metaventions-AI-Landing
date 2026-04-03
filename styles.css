@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* ── Dark mode via .dark class (not prefers-color-scheme) ── */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* ── Tailwind 4 Theme (replaces tailwind.config) ── */
 @theme {
   --color-midnight: #0B1020;

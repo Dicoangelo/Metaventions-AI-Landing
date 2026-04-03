@@ -17,7 +17,7 @@ import InvestorsModal from './components/InvestorsModal';
 const App: React.FC = () => {
   const [customBg, setCustomBg] = useState<string | null>(null);
   const [bgOpacity, setBgOpacity] = useState<number>(0.4);
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
   const [isContactOpen, setIsContactOpen] = useState(false);
@@ -33,12 +33,12 @@ const App: React.FC = () => {
     if (storedBg) setCustomBg(storedBg);
     if (storedOpacity) setBgOpacity(parseFloat(storedOpacity));
 
-    // Dark mode is default; only switch to light if explicitly stored
-    if (storedTheme === 'light') {
-      setIsDarkMode(false);
-      document.body.classList.remove('dark');
-    } else {
+    // Light mode is default; only switch to dark if explicitly stored
+    if (storedTheme === 'dark') {
+      setIsDarkMode(true);
       document.body.classList.add('dark');
+    } else {
+      document.body.classList.remove('dark');
     }
 
     const handleHashChange = () => {
