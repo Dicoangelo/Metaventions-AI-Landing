@@ -19,6 +19,20 @@ const Footer: React.FC = () => {
             <div className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 border-sovereign rounded-sm bg-white dark:bg-obsidian"></div>
             METAVENTIONS<span className="text-[#18E6FF]"> AI</span>
           </div>
+          <a
+            href="https://dicoangelo.metaventionsai.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-black dark:text-white/70 mono text-[10px] sm:text-[11px] tracking-[0.15em] uppercase font-bold mb-2 hover:text-[#7B2CFF] transition-colors duration-500 click-feedback"
+          >
+            Dico Angelo // Founder
+          </a>
+          <a
+            href="mailto:dicoangelo@metaventionsai.com"
+            className="text-black dark:text-white/60 mono text-[10px] sm:text-[11px] tracking-[0.1em] mb-3 hover:text-[#7B2CFF] transition-colors duration-500 click-feedback"
+          >
+            dicoangelo@metaventionsai.com
+          </a>
           <p className="text-black dark:text-white/50 mono text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.3em] uppercase font-bold transition-colors duration-500">&copy; 2026 Metaventions AI // <span className="hidden sm:inline">MANHATTAN, NY //</span> Orbital_Core_01</p>
         </div>
 
